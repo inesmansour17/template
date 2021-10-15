@@ -8,8 +8,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import React, { useEffect, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
+import React, { useState,useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import * as actions from '../../redux/actions/centers'
+
 
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
@@ -32,6 +35,19 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function ManageCenter() {
+  
+    const centers = useSelector((state) => state.centers)
+    const [data, setData] = useState(centers.list.map((center,key) =>({
+      ...center,
+      key: key.toString()
+    }))); 
+    
+  const dispatch = useDispatch() 
+  
+  useEffect(() => {
+    dispatch(actions.fetchCenters())  
+  }, [])
+
   return (
     <div>
       <Layout style={{ minHeight: "100vh" }}>
@@ -45,35 +61,36 @@ function ManageCenter() {
               <AddCenter />
               <Table aria-label="simple table">
                 <TableHead>
-                  <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>ID</TableCell>
+                  <TableRow> 
                     <TableCell>Name</TableCell>
-                    <TableCell>Gouvernorat</TableCell>
-                    <TableCell>Ville</TableCell>
+                    <TableCell>Governorate</TableCell>
+                    <TableCell>City</TableCell>
                     <TableCell>Capacity</TableCell>
                     <TableCell>Vac-Type</TableCell>
                     <TableCell>Vac-Stock</TableCell>
+                    <TableCell>Update</TableCell>
+                    <TableCell>Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <StyledTableRow>
-                    <StyledTableCell> </StyledTableCell>
-                    <StyledTableCell> </StyledTableCell>
-
-                    <StyledTableCell></StyledTableCell>
-                    <StyledTableCell></StyledTableCell>
-                    <StyledTableCell></StyledTableCell>
-
-                    <StyledTableCell>-</StyledTableCell>
-                    <StyledTableCell>-</StyledTableCell>
+                  {data && data.map((center, index) => 
+                  <StyledTableRow key={index}>
+                    <StyledTableCell> {center.name}</StyledTableCell>
+                    <StyledTableCell> {center.governorate}</StyledTableCell>
+                    <StyledTableCell> {center.city}</StyledTableCell>
+                    <StyledTableCell> {center.center_capacity}</StyledTableCell>
+                    <StyledTableCell> {center.type_vaccine}</StyledTableCell>
+                    <StyledTableCell> {center.number_vaccine}</StyledTableCell>
                     <StyledTableCell>
                       <Button>Update </Button>
+                    </StyledTableCell>
+                    <StyledTableCell> 
                       <IconButton>
                         <DeleteIcon className="btnColorDelete" />
                       </IconButton>
                     </StyledTableCell>
-                  </StyledTableRow>
+                  </StyledTableRow>)
+                  }
                 </TableBody>
               </Table>
             </div>
