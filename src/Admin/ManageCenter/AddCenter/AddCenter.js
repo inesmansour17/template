@@ -41,8 +41,8 @@ function AddCenter({}) {
       city:selectedCity,
       center_capacity:capacity,
       number_vaccine:capacity,
-    }
-    dispatch(actions.addCenter(JSON.stringify(center)))
+    } 
+    dispatch(actions.addCenter(center))
   }
 
 

@@ -36,11 +36,12 @@ export const fetchCenterByName = (id) => async (dispatch) => {
 
 export const addCenter = (center) => async (dispatch) => {
   const newCenter = await api.addCenter(center)
-
+  console.log(newCenter)
+  newCenter? 
   dispatch({
     type: types.ADD_CENTER,
     center: newCenter,
-  })
+  }) : console.log("Error ")
 }
 
 export const updateCenter = ( center) => async (dispatch) => {

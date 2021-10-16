@@ -6,7 +6,7 @@ export const addCenter = async (center) => {
   console.log(center)
   const result = await Axios.post(
     baseUrl + "/add",
-    JSON.stringify(center)
+    center
   )
   return result.data
 }
