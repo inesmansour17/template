@@ -3,13 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import "./i18n";
-
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-
+import {configureStore} from './redux/store';
+const store = configureStore()
 ReactDOM.render(
+
   <Suspense fallback="loading">
+    <Provider store = {store} >
     <App />
+    </Provider>
   </Suspense>,
   document.getElementById("root")
 );

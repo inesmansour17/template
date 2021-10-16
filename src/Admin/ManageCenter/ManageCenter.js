@@ -1,16 +1,12 @@
+import React, { useState,useEffect } from "react";
+import { Layout, Button } from "antd";
+import DeleteIcon from "@material-ui/icons/Delete"; 
+import {IconButton,Table,TableBody,TableCell,TableHead,TableRow,withStyles} from "@material-ui/core";    
+import { useDispatch, useSelector } from "react-redux"
+import * as actions from '../../redux/actions/centers'  
+import UpdateCenter from "./UpdateCenter/UpdateCenter";
 import SideBar from "../../SideBar/SideBar";
 import AddCenter from "./AddCenter/AddCenter";
-import { Layout, Button } from "antd";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import React, { useEffect, useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
-
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -32,8 +28,29 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function ManageCenter() {
-  return (
-    <div>
+  const isAddVisible = useSelector((state) => state.centers.displayed) 
+  const isUpdateVisible = useSelector((state) => state.centers.displayUpdate) 
+  const centers = useSelector((state) => state.centers)    
+  const dispatch = useDispatch() 
+  
+  useEffect(() => {
+    try {
+      dispatch(actions.fetchCenters()) 
+    } catch (e) {
+      console.log('errroooor')
+    }  
+    console.log('center state : ', centers)
+    
+  }, [])
+  const handleUpdate = (center) =>{
+    dispatch(actions.setSelectedCenter(center)) 
+    dispatch(actions.setDisplayUpdate(true)) 
+  }
+  const handleDelete =  (name) => {
+    dispatch(actions.deleteCenter(name))
+
+  }
+  return ( 
       <Layout style={{ minHeight: "100vh" }}>
         <SideBar />
         <Layout className="site-layout">
@@ -42,45 +59,50 @@ function ManageCenter() {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
-              <AddCenter />
+             <Button type="primary" onClick={()=>dispatch(actions.setDisplayed(true)) }>
+              Add new center
+            </Button>
+             { isAddVisible && <AddCenter /> }
+             { isUpdateVisible && <UpdateCenter /> }
               <Table aria-label="simple table">
                 <TableHead>
-                  <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>ID</TableCell>
+                  <TableRow> 
                     <TableCell>Name</TableCell>
-                    <TableCell>Gouvernorat</TableCell>
-                    <TableCell>Ville</TableCell>
+                    <TableCell>Governorate</TableCell>
+                    <TableCell>City</TableCell>
                     <TableCell>Capacity</TableCell>
                     <TableCell>Vac-Type</TableCell>
                     <TableCell>Vac-Stock</TableCell>
+                    <TableCell>Update</TableCell>
+                    <TableCell>Delete</TableCell>
                   </TableRow>
                 </TableHead>
+                {centers.loading && <div>Loading ... </div>}
                 <TableBody>
-                  <StyledTableRow>
-                    <StyledTableCell> </StyledTableCell>
-                    <StyledTableCell> </StyledTableCell>
-
-                    <StyledTableCell></StyledTableCell>
-                    <StyledTableCell></StyledTableCell>
-                    <StyledTableCell></StyledTableCell>
-
-                    <StyledTableCell>-</StyledTableCell>
-                    <StyledTableCell>-</StyledTableCell>
+                {!centers.loading && centers.list && centers.list.map((center, index) =>   
+                  <StyledTableRow key={index}> 
+                    <StyledTableCell> {center.name}</StyledTableCell>
+                    <StyledTableCell> {center.governorate}</StyledTableCell>
+                    <StyledTableCell> {center.city}</StyledTableCell>
+                    <StyledTableCell> {center.center_capacity}</StyledTableCell>
+                    <StyledTableCell> {center.type_vaccine}</StyledTableCell>
+                    <StyledTableCell> {center.number_vaccine}</StyledTableCell>
                     <StyledTableCell>
-                      <Button>Update </Button>
-                      <IconButton>
+                      <Button onClick={()=>handleUpdate(center)}>Update </Button>
+                    </StyledTableCell>
+                    <StyledTableCell> 
+                      <IconButton onClick={()=> handleDelete(center.name)}>
                         <DeleteIcon className="btnColorDelete" />
                       </IconButton>
                     </StyledTableCell>
-                  </StyledTableRow>
+                  </StyledTableRow>)
+                  }
                 </TableBody>
               </Table>
             </div>
           </Content>
         </Layout>{" "}
-      </Layout>
-    </div>
+      </Layout> 
   );
 }
 
