@@ -16,8 +16,7 @@ const centers = (state = initialState, action) => {
       }
     case types.FETCH_CENTERS_REQUEST:
       return { ...state, loading: true, error: true }
-    case types.FETCH_CENTERS_SUCCESS:
-      console.log('called',action.list)
+    case types.FETCH_CENTERS_SUCCESS: 
        return { ...state, list: [...action.list], loading: false, error:true }
     case types.FETCH_CENTERS_FAILURE:
       return { ...state, error: true, loading: false }
@@ -50,7 +49,8 @@ const centers = (state = initialState, action) => {
       return { ...state, list: updatedCenters }
 
     case types.DELETE_CENTER:
-      const newCenters = state.list.filter((center) => center.id !== action.id)
+      const newCenters = state.list.filter((center) => center.name !== action.center)
+      console.log(newCenters)
       return { ...state, list: newCenters }
     default:
       return state

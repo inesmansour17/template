@@ -56,6 +56,7 @@ export const deleteCenter = (name) => async (dispatch) => {
   await api.deleteCenter(name)
   dispatch ( {
     type: types.DELETE_CENTER,
+    center: name
   })
 }
 

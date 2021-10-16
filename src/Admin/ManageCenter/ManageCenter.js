@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import * as actions from '../../redux/actions/centers' 
+import { deleteCenter } from "../../services/centers.service";
 
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
@@ -36,6 +37,7 @@ const StyledTableRow = withStyles((theme) => ({
 function ManageCenter() {
   
   const centers = useSelector((state) => state.centers)   
+  console.log(centers)
   const dispatch = useDispatch() 
   
   useEffect(() => {
@@ -48,6 +50,11 @@ function ManageCenter() {
     
   }, [])
 
+
+  const handleDelete =  (name) => {
+    dispatch(actions.deleteCenter(name))
+
+  }
   return (
     <div>
       <Layout style={{ minHeight: "100vh" }}>
@@ -86,7 +93,7 @@ function ManageCenter() {
                       <Button>Update </Button>
                     </StyledTableCell>
                     <StyledTableCell> 
-                      <IconButton>
+                      <IconButton onClick={()=> handleDelete(center.name)}>
                         <DeleteIcon className="btnColorDelete" />
                       </IconButton>
                     </StyledTableCell>

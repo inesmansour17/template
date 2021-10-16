@@ -26,7 +26,7 @@ function AddCenter({}) {
   
   const changeGov = (gover) => {
     setSelectedGov(gover);
-    const found = villes.find((ville) => ville.gov == gover).cities 
+    const found = villes.find((ville) => ville.gov === gover).cities 
     setCities(found ? found: []);
         
 	}
