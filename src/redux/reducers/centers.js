@@ -17,7 +17,8 @@ const centers = (state = initialState, action) => {
     case types.FETCH_CENTERS_REQUEST:
       return { ...state, loading: true, error: true }
     case types.FETCH_CENTERS_SUCCESS:
-      return { ...state, list: [...action.centers], loading: false }
+      console.log('called',action.list)
+       return { ...state, list: [...action.list], loading: false, error:true }
     case types.FETCH_CENTERS_FAILURE:
       return { ...state, error: true, loading: false }
     case types.FETCH_CENTER_BY_ID:

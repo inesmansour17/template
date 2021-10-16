@@ -11,8 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { withStyles } from "@material-ui/core/styles";
 import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import * as actions from '../../redux/actions/centers'
-
+import * as actions from '../../redux/actions/centers' 
 
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
@@ -36,16 +35,17 @@ const StyledTableRow = withStyles((theme) => ({
 
 function ManageCenter() {
   
-    const centers = useSelector((state) => state.centers)
-    const [data, setData] = useState(centers.list.map((center,key) =>({
-      ...center,
-      key: key.toString()
-    }))); 
-    
+  const centers = useSelector((state) => state.centers)   
   const dispatch = useDispatch() 
   
   useEffect(() => {
-    dispatch(actions.fetchCenters())  
+    try {
+      dispatch(actions.fetchCenters()) 
+    } catch (e) {
+      console.log('errroooor')
+    }  
+    console.log('date', centers)
+    
   }, [])
 
   return (
@@ -72,8 +72,9 @@ function ManageCenter() {
                     <TableCell>Delete</TableCell>
                   </TableRow>
                 </TableHead>
+                {centers.loading && <div>Loading ... </div>}
                 <TableBody>
-                  {data && data.map((center, index) => 
+                {!centers.loading && centers.list && centers.list.map((center, index) =>   
                   <StyledTableRow key={index}>
                     <StyledTableCell> {center.name}</StyledTableCell>
                     <StyledTableCell> {center.governorate}</StyledTableCell>

@@ -3,9 +3,10 @@ import Axios from "axios"
 let baseUrl = "http://localhost:5000/api/centers" ;
 
 export const addCenter = async (center) => {
+  console.log(center)
   const result = await Axios.post(
-    baseUrl + "/centers/add",
-    center
+    baseUrl + "/add",
+    JSON.stringify(center)
   )
   return result.data
 }

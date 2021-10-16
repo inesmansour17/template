@@ -10,12 +10,15 @@ export const fetchCenters = () => async (dispatch) => {
      type: types.FETCH_CENTERS_REQUEST,
      
    })
+   
       try {
-        const centers = await api.fetchCenters()
+        // const centers =  
+
          dispatch({
            type: types.FETCH_CENTERS_SUCCESS,
-           centers,
+           list: await api.fetchCenters(),
          })
+        // console.log(centers)
       } catch (e) {
        dispatch({
          type: types.FETCH_CENTERS_FAILURE,

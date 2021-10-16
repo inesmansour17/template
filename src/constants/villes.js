@@ -1,14 +1,7 @@
-export default [
-    {gov:"Ariana", 
-    cities :[  "Ariana"	,
-        	    "Soukra",
-                "Raoued",
-                "Kalâat el-Andalous",
-                "Sidi Thabet",
-                "Ettadhamen-Mnihla"]
-            },
-    {gov:"Beja", 
-    cities:[    "AMDOUN",
+const villes = [
+    
+    {   gov:"Beja", 
+        cities:[    "AMDOUN",
                 "BEJA NORD",
                 "BEJA SUD",
                 "GOUBELLAT",
@@ -16,10 +9,19 @@ export default [
                 "NEFZA",
                 "TEBOURSOUK",
                 "TESTOUR",
-                "THIBAR"
-            ]},
-    {gov:"Ben Arous", 
-    cities:["BEN AROUS",
+                "THIBAR"]
+    },
+    {
+        gov:"Ariana", 
+        cities :[  "Ariana"	,
+        	    "Soukra",
+                "Raoued",
+                "Kalâat el-Andalous",
+                "Sidi Thabet",
+                "Ettadhamen-Mnihla"]
+    },
+    {   gov:"Ben Arous", 
+        cities:["BEN AROUS",
                 "BOU MHEL",
                 "EL MOUROUJ",
                 "EZZAHRA",
@@ -32,7 +34,8 @@ export default [
                 "NOUVELLE MEDINA",
                 "RADES"
                 ]},
-        {gov:"Bizerte", 
+    {
+        gov:"Bizerte", 
         cities:[     "BIZERTE NORD",
                         "BIZERTE SUD",
                         "EL ALIA",
@@ -108,5 +111,5 @@ export default [
    {gov:"Zaghouan", 
    cities:[]}
 ] 
-
-// to access villes just write villes[gov] with gov variable or state from select option
+export default villes
+ 

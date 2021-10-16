@@ -6,15 +6,16 @@ import villes from '../../../constants/villes'
 import { Modal, Button } from "antd";
 import { Form, Input, Select, InputNumber } from "antd";
 import * as actions from '../../../redux/actions/centers'
+import {find, get} from 'lodash'
 
-function AddCenter() {
+function AddCenter({}) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
   };
   const [cities,setCities] = useState([])
-  const [selectedGov,setSelectedGov] = useState('--Choose Gov--')
-  const [selectedCity,setSelectedCity] = useState('--Choose City--') 
+  const [selectedGov,setSelectedGov] = useState('')
+  const [selectedCity,setSelectedCity] = useState('') 
   const [name,setName] = useState('') 
   const [capacity,setCapacity] = useState(0) 
   const dispatch = useDispatch() 
@@ -22,18 +23,26 @@ function AddCenter() {
   useEffect(() => {
     dispatch(actions.fetchCenters())  
   }, [])
-    const changeGov = (gover) => {
-		setSelectedGov(gover);
-      console.log(gover) 
-		setCities(villes.find(ville => ville.gov === gover).cities);
-        console.log(cities) 
+  
+  const changeGov = (gover) => {
+    setSelectedGov(gover);
+    const found = villes.find((ville) => ville.gov == gover).cities 
+    setCities(found ? found: []);
+        
 	}
 
 	const changeCity = (value) => {
 		setSelectedCity(value); 
 	}
-  const handleSubmit = async (values) =>{
-    dispatch(actions.addCenter(values))
+  const handleSubmit = async () =>{
+    const center ={
+      name, 
+      governorate:selectedGov, 
+      city:selectedCity,
+      center_capacity:capacity,
+      number_vaccine:capacity,
+    }
+    dispatch(actions.addCenter(JSON.stringify(center)))
   }
 
 
@@ -85,7 +94,7 @@ function AddCenter() {
               },
             ]}
           >
-            <Input name="center_name" onChange={value => {console.log(value);setName(value)}}/>
+            <Input name="center_name" onChange={e => {console.log(e.target.value);setName(e.target.value)}}/>
           </Form.Item>
           <Form.Item
             label="gouvernorat"
@@ -95,12 +104,12 @@ function AddCenter() {
               },
             ]}
           >
-            <Select value={selectedGov} onChange={changeGov}>
-            <Select.Option>--Choose Governorate--</Select.Option>
-            {gouvernorat?.map((gov, key) => {
-              return <Select.Option key={key} value={gov} >{gov}</Select.Option>
-            })}
-            </Select>
+            <Select value={selectedGov} onChange={changeGov.bind(this)}>
+              <Select.Option>--Choose Governorate--</Select.Option>
+              {gouvernorat?.map((gov, key) => {
+                return <Select.Option key={key} value={gov} >{gov}</Select.Option>
+              })}
+              </Select>
           </Form.Item>
           <Form.Item
             label="city"
@@ -127,7 +136,7 @@ function AddCenter() {
               },
             ]}
           >
-            <Input name="capacity" /* value={capacity} */ onChange={value => setCapacity(value)}/>
+            <Input name="capacity" /* value={capacity} */ onChange={e => setCapacity(e.target.value)}/>
           </Form.Item>
 
           <Button onClick={handleSubmit}> Add center </Button>
