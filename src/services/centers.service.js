@@ -16,7 +16,7 @@ export const updateCenter = async (center) => {
     baseUrl + "/update" ,
     center
   )
-  return result.data.center
+  return result.data.updatedCenter
 }
 
 export const deleteCenter = async (name) => {

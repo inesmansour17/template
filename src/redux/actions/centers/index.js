@@ -1,8 +1,18 @@
 import * as types from "../../types"
 import * as api from "../../../services/centers.service"
-export const setSelectedCenter = (id) => ({
+export const setSelectedCenter = (center) => ({
   type: types.SET_SELECTED_CENTER,
-  id
+  center
+})
+
+export const setDisplayed = (value) => ({
+  type: types.SET_DISPLAYED,
+  value
+})
+
+export const setDisplayUpdate = (value) => ({
+  type: types.SET_DISPLAY_UPDATE,
+  value
 })
 
 export const fetchCenters = () => async (dispatch) => {
@@ -44,13 +54,17 @@ export const addCenter = (center) => async (dispatch) => {
   }) : console.log("Error ")
 }
 
-export const updateCenter = ( center) => async (dispatch) => {
-  const updatedCenter = await api.updateCenter( center)
-
+export const updateCenter = (center) => async (dispatch) => {
+  try{
+  const updatedCenter = await api.updateCenter(center) 
   dispatch ( {
     type: types.UPDATE_CENTER,
     center: updatedCenter,
   })
+  }catch(e){
+    console.log(e)
+  }
+  
 }
 export const deleteCenter = (name) => async (dispatch) => {
   await api.deleteCenter(name)

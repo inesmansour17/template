@@ -1,19 +1,12 @@
+import React, { useState,useEffect } from "react";
+import { Layout, Button } from "antd";
+import DeleteIcon from "@material-ui/icons/Delete"; 
+import {IconButton,Table,TableBody,TableCell,TableHead,TableRow,withStyles} from "@material-ui/core";    
+import { useDispatch, useSelector } from "react-redux"
+import * as actions from '../../redux/actions/centers'  
+import UpdateCenter from "./UpdateCenter/UpdateCenter";
 import SideBar from "../../SideBar/SideBar";
 import AddCenter from "./AddCenter/AddCenter";
-import { Layout, Button } from "antd";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import { withStyles } from "@material-ui/core/styles";
-import React, { useState,useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import * as actions from '../../redux/actions/centers' 
-import { deleteCenter } from "../../services/centers.service";
-
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,9 +28,9 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function ManageCenter() {
-  
-  const centers = useSelector((state) => state.centers)   
-  console.log(centers)
+  const isAddVisible = useSelector((state) => state.centers.displayed) 
+  const isUpdateVisible = useSelector((state) => state.centers.displayUpdate) 
+  const centers = useSelector((state) => state.centers)    
   const dispatch = useDispatch() 
   
   useEffect(() => {
@@ -46,17 +39,18 @@ function ManageCenter() {
     } catch (e) {
       console.log('errroooor')
     }  
-    console.log('date', centers)
+    console.log('center state : ', centers)
     
   }, [])
-
-
+  const handleUpdate = (center) =>{
+    dispatch(actions.setSelectedCenter(center)) 
+    dispatch(actions.setDisplayUpdate(true)) 
+  }
   const handleDelete =  (name) => {
     dispatch(actions.deleteCenter(name))
 
   }
-  return (
-    <div>
+  return ( 
       <Layout style={{ minHeight: "100vh" }}>
         <SideBar />
         <Layout className="site-layout">
@@ -65,7 +59,11 @@ function ManageCenter() {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
-              <AddCenter />
+             <Button type="primary" onClick={()=>dispatch(actions.setDisplayed(true)) }>
+              Add new center
+            </Button>
+             { isAddVisible && <AddCenter /> }
+             { isUpdateVisible && <UpdateCenter /> }
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow> 
@@ -82,7 +80,7 @@ function ManageCenter() {
                 {centers.loading && <div>Loading ... </div>}
                 <TableBody>
                 {!centers.loading && centers.list && centers.list.map((center, index) =>   
-                  <StyledTableRow key={index}>
+                  <StyledTableRow key={index}> 
                     <StyledTableCell> {center.name}</StyledTableCell>
                     <StyledTableCell> {center.governorate}</StyledTableCell>
                     <StyledTableCell> {center.city}</StyledTableCell>
@@ -90,7 +88,7 @@ function ManageCenter() {
                     <StyledTableCell> {center.type_vaccine}</StyledTableCell>
                     <StyledTableCell> {center.number_vaccine}</StyledTableCell>
                     <StyledTableCell>
-                      <Button>Update </Button>
+                      <Button onClick={()=>handleUpdate(center)}>Update </Button>
                     </StyledTableCell>
                     <StyledTableCell> 
                       <IconButton onClick={()=> handleDelete(center.name)}>
@@ -104,8 +102,7 @@ function ManageCenter() {
             </div>
           </Content>
         </Layout>{" "}
-      </Layout>
-    </div>
+      </Layout> 
   );
 }
 
