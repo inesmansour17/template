@@ -52,7 +52,11 @@ function Navbar() {
         <Menu.Item key="Contact">
           <a href="#Contact">Contactez-nous</a>
         </Menu.Item>
-
+        <Menu.Item key="Login">
+          <Link to="/login">
+            Login
+          </Link>
+        </Menu.Item>
         <SubMenu key="EspaceCitoyen" title="Espace Citoyen">
           <Menu.Item>Imprimer attestation</Menu.Item>
           <Menu.Item>
