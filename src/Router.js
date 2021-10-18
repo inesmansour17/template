@@ -9,6 +9,7 @@ import inscriptionCenter from "./inscriptionCenter/inscriptionCenter";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import updateInscri from "./updateInscri/updateInscri";
 import reportRdv from "./reportRdv/reportRdv";
+import Login from "./login";
 
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
@@ -28,8 +29,8 @@ class AppRouter extends React.Component {
             path="/inscriptionPharmacie"
             component={inscriptionPharmacie}
           ></Route>
-
           <Route path="/updateInscri" component={updateInscri}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/reportRdv" component={reportRdv}></Route>
           <Route
             path="/inscriptionPharmacie"
