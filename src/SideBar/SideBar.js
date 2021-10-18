@@ -31,9 +31,10 @@ function SideBar() {
           </Menu.Item>
 
           <Menu.Item key="3" icon={<DesktopOutlined />}>
-            <Link exact to="/ManagePharmacies">
-              Manage Pharmacies
-            </Link>
+
+            <Link exact to="/ManagePharmacy">Manage Pharmacies</Link>
+
+
           </Menu.Item>
 
           <Menu.Item key="4" icon={<DesktopOutlined />}>

@@ -5,6 +5,8 @@ import { createBrowserHistory } from "history";
 import Home from "./Home/Home";
 import Admin from "./Admin/Admin";
 import ManageCenter from "./Admin/ManageCenter/ManageCenter";
+import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
+
 import inscriptionCenter from "./inscriptionCenter/inscriptionCenter";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import updateInscri from "./updateInscri/updateInscri";
@@ -20,6 +22,8 @@ class AppRouter extends React.Component {
         <Switch>
           <Route path="/Home" component={Home}></Route>
           <Route path="/ManageCenter" component={ManageCenter}></Route>
+          <Route path="/ManagePharmacy" component={ManagePharmacy}></Route>
+
           <Route
             path="/inscriptionCenter"
             component={inscriptionCenter}
