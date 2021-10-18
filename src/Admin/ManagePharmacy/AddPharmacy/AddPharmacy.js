@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import * as actions from '../../redux/actions/centers'
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
 import { Modal, Button } from "antd";
 import { Form, Input, Select, InputNumber } from "antd";
-import * as actions from "../../../redux/actions/centers";
+import * as actions from "../../../redux/actions/pharmacies";
 
-function UpdateCenter() {
-  const isModalVisible = useSelector((state) => state.centers.displayUpdate);
-  const center = useSelector((state) => state.centers.selectedCenter);
+function AddPharmacy() {
+  const isModalVisible = useSelector((state) => state.pharmacies.displayed);
   const [cities, setCities] = useState([]);
-  const [selectedGov, setSelectedGov] = useState(center.governorate);
-  const [selectedCity, setSelectedCity] = useState(center.city);
-  const [name, setName] = useState(center.name);
-  const [capacity, setCapacity] = useState(center.center_capacity);
+  const [selectedGov, setSelectedGov] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [name, setName] = useState("");
+  const [capacity, setCapacity] = useState(0);
   const dispatch = useDispatch();
   const closeModal = () => {
-    dispatch(actions.setDisplayUpdate(false));
+    dispatch(actions.setDisplayed(false));
   };
   useEffect(() => {}, []);
 
@@ -31,23 +29,19 @@ function UpdateCenter() {
     setSelectedCity(value);
   };
   const handleSubmit = async () => {
-    const Updatedcenter = {
-      id: center._id,
+    const pharmacy = {
       name,
       governorate: selectedGov,
       city: selectedCity,
-      center_capacity: capacity,
-      number_vaccine: capacity,
+      pharmacy_capacity: capacity,
+      number_vaccine: 0,
     };
-    dispatch(actions.updateCenter(Updatedcenter));
+    dispatch(actions.addPharmacy(pharmacy));
   };
-
   return (
     <Modal
-      title="Update new center"
+      title="Add new pharmacy"
       visible={isModalVisible}
-      okText={"update"}
-      onOk={closeModal}
       onCancel={closeModal}
     >
       <Form
@@ -57,7 +51,7 @@ function UpdateCenter() {
         layout="horizontal"
       >
         <Form.Item
-          label="center_name:"
+          label="pharmacy_name:"
           rules={[
             {
               required: true,
@@ -65,9 +59,11 @@ function UpdateCenter() {
           ]}
         >
           <Input
-            name="center_name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="pharmacy_name"
+            onChange={(e) => {
+              console.log(e.target.value);
+              setName(e.target.value);
+            }}
           />
         </Form.Item>
         <Form.Item
@@ -78,7 +74,7 @@ function UpdateCenter() {
             },
           ]}
         >
-          <Select value={selectedGov} onChange={changeGov}>
+          <Select value={selectedGov} onChange={changeGov.bind(this)}>
             <Select.Option>--Choose Governorate--</Select.Option>
             {gouvernorat?.map((gov, key) => {
               return (
@@ -110,7 +106,7 @@ function UpdateCenter() {
         </Form.Item>
 
         <Form.Item
-          label="center_capacity:"
+          label="pharmacy_capacity:"
           rules={[
             {
               required: true,
@@ -119,14 +115,13 @@ function UpdateCenter() {
         >
           <Input
             name="capacity"
-            value={capacity}
-            onChange={(e) => setCapacity(e.target.value)}
+            /* value={capacity} */ onChange={(e) => setCapacity(e.target.value)}
           />
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Update center </Button>
+        <Button onClick={handleSubmit}> Add pharmacy </Button>
       </Form>
     </Modal>
   );
 }
-export default UpdateCenter;
+export default AddPharmacy;
