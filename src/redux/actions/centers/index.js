@@ -1,4 +1,4 @@
-import * as types from "../../types";
+import * as types from "../../../redux/types";
 import * as api from "../../../services/centers.service";
 export const setSelectedCenter = (center) => ({
   type: types.SET_SELECTED_CENTER,
