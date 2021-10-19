@@ -1,7 +1,8 @@
-// import { Progress } from "antd";
 import React from "react";
-import SideBar from "../SideBar/SideBar";
 import { Layout, Progress } from "antd";
+
+import SideBar from "../SideBar/SideBar";
+
 const { Content } = Layout;
 
 function Admin() {

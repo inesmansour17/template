@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import { useHistory } from "react-router";
-import { Form, Input, Button, Select, InputNumber } from "antd";
+import { Form, Input, Button, Space, Spin } from "antd";
 import { useDispatch,useSelector } from "react-redux" 
 import { useJwt } from "react-jwt"; 
+
+import Navbar from "../Navbar/Navbar";
 import * as actions from '../redux/actions/auth' 
 import './login.css'
-import Navbar from "../Navbar/Navbar";
  
 function Login() {
   const authState = useSelector((state) => state.auth)  
@@ -24,6 +25,7 @@ function Login() {
           return history.push('/Admin')
         case "enrolled" :
           history.push('/Home')
+          break;
         default:
           history.push('/Home')
       }
@@ -67,10 +69,14 @@ function Login() {
           <Input />
         </Form.Item>
         
-        <Button type="primary" block htmlType="submit" shape="round">
+        <Button type="primary" htmlType="submit" shape="round">
           S'inscrire
         </Button>
+        <br />
+        <br />
+        {authState.errors &&  <Space size="middle"><Spin size="large" /></Space>}
       </Form>
+      
     </div>
   );
 }

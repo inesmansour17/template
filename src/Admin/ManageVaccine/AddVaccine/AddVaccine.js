@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Modal, Button, Form, Input} from "antd"; 
 
-import { Modal, Button } from "antd";
-import { Form, Input, Select, InputNumber } from "antd";
 import * as actions from "../../../redux/actions/vaccines";
 
 function AddVaccine() {
