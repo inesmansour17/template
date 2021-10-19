@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Layout, Button } from "antd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
@@ -11,11 +11,13 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
+
 import * as actions from "../../redux/actions/vaccines";
 import UpdateVaccine from "./UpdateVaccine/UpdateVaccine";
 import SideBar from "../../SideBar/SideBar";
 import AddVaccine from "./AddVaccine/AddVaccine";
 const { Content } = Layout;
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",

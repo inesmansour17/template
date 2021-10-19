@@ -30,7 +30,7 @@ function Navbar() {
           <Image src={logo} className="logos" />
         </Menu.Item>
 
-        <Menu.Item>
+        <Menu.Item key="home">
           <Link to="/Home">{t("Welcome")}</Link>
         </Menu.Item>
 
@@ -58,16 +58,16 @@ function Navbar() {
           </Link>
         </Menu.Item>
         <SubMenu key="EspaceCitoyen" title="Espace Citoyen">
-          <Menu.Item>Imprimer attestation</Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="attestation">Imprimer attestation</Menu.Item>
+          <Menu.Item key="MAJ">
             <Link to="/updateInscri">Mettre à jour inscription</Link>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="rdv">
             <Link to="/reportRdv">Report rendez-vous</Link>
           </Menu.Item>
         </SubMenu>
 
-        <Menu.Item>
+        <Menu.Item key="translation">
           <button onClick={changeLanguage("en")}>en</button>
           <button onClick={changeLanguage("fr")}>fr</button>
         </Menu.Item>

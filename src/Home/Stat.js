@@ -1,13 +1,12 @@
-import "./Stat.css";
-import { Row, Col } from "antd";
 import React from 'react'
-
+import { Row, Col } from "antd";
 import {
   CheckCircleOutlined,
   HighlightOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
 
+import "./Stat.css";
 const style = {
   background: "white",
   padding: "6px",

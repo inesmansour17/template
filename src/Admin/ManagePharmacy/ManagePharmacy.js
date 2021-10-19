@@ -1,12 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import { Layout, Button } from "antd";
 import DeleteIcon from "@material-ui/icons/Delete"; 
 import {IconButton,Table,TableBody,TableCell,TableHead,TableRow,withStyles} from "@material-ui/core";    
-import { useDispatch, useSelector } from "react-redux"
+
+
 import * as actions from '../../redux/actions/pharmacies'  
 import UpdatePharmacy from "./UpdatePharmacy/UpdatePharmacy";
 import AddPharmacy from "./AddPharmacy/AddPharmacy";
 import SideBar from "../../SideBar/SideBar";
+
 const { Content } = Layout;
 const StyledTableCell = withStyles((theme) => ({
   head: {

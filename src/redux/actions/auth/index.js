@@ -21,32 +21,3 @@ export const login = (loggedUser) => async (dispatch) => {
   }
  
 };
-/*
-export const register = (values) => (dispatch) => {
-
-  return registerFromAPI(values).then(
-      (result) => {
-
-          if (result.error === false) {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              /*localStorage.setItem('user', JSON.stringify(result.data));
-               dispatch({
-                   type: REGISTER_SUCCESS,
-                   payload: result.data,
-               });
-               
-              
-              return true
-
-          } else {
-              dispatch({
-                  type: REGISTER_FAIL,
-                  payload: {},
-              });
-              return result.data
-
-          }
-      }
-
-  );
-*/

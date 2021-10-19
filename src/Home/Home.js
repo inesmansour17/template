@@ -1,13 +1,12 @@
+import React from 'react'
+import { Carousel, Image } from "antd";
+
 import Faq from "./Faq";
 import Stat from "./Stat";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Navbar from "../Navbar/Navbar";
-import { Carousel, Image } from "antd";
 import tal from "../img/box-img2.jpg";
-import React from 'react'
-
-
 import tal3 from "../img/tal3.jpg";
 
 const contentStyle = {
