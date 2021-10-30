@@ -9,16 +9,15 @@ import villes from '../../../constants/villes'
 function UpdatePharmacy() {
   const isModalVisible = useSelector((state) => state.pharmacies.displayUpdate) 
   const pharmacy = useSelector((state) => state.pharmacies.selectedPharmacy) 
-  const [cities,setCities] = useState([])
-  const [selectedGov,setSelectedGov] = useState(pharmacy.governorate)
-  const [selectedCity,setSelectedCity] = useState(pharmacy.city) 
-  const [name,setName] = useState(pharmacy.name) 
-  const [capacity,setCapacity] = useState(pharmacy.pharmacy_capacity) 
+  const [cities,setCities] = useState([]) 
   const dispatch = useDispatch() 
   const closeModal = () => {
     dispatch(actions.setDisplayUpdate(false))  
   };
-  
+  const changeGov = (gover) => { 
+    const found = villes.find((ville) => ville.gov === gover).cities;
+    setCities(found ? found : []);
+  };
   const handleSubmit = async (values) =>{
     const Updatedpharmacy ={
       id:pharmacy._id,
@@ -72,7 +71,7 @@ function UpdatePharmacy() {
               },
             ]}
           >
-            <Select>
+            <Select onChange={changeGov}>
               <Select.Option>--Choose Governorate--</Select.Option>
               {gouvernorat?.map((gov, key) => {
                 return <Select.Option key={key} value={gov} >{gov}</Select.Option>

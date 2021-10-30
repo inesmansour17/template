@@ -111,8 +111,8 @@ function ManageCenter() {
                   <TableCell>Vaccine Type</TableCell>
                   <TableCell>Vaccine Stock</TableCell>
                   <TableCell>Update</TableCell>
-                  <TableCell>Delete</TableCell>
                   <TableCell>Assign Vaccine</TableCell>
+                  <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
               {centers.loading && <div>Loading ... </div>}
@@ -125,18 +125,17 @@ function ManageCenter() {
                       <StyledTableCell> {center.governorate}</StyledTableCell>
                       <StyledTableCell> {center.city}</StyledTableCell>
                       <StyledTableCell>
-                        {" "}
                         {center.center_capacity}
                       </StyledTableCell>
-                      <StyledTableCell>
-                        {" "}
-                        {center.type_vaccine
-                          ? center.type_vaccine
+                      <StyledTableCell> 
+                        { center.type_vaccine
+                          ? center.type_vaccine.vaccine_type
                           : "Not assigned"}
                       </StyledTableCell>
-                      <StyledTableCell>
-                        {" "}
-                        {center.number_vaccine}
+                      <StyledTableCell> 
+                        { center.type_vaccine
+                          ? center.number_vaccine
+                          : "Not assigned"}
                       </StyledTableCell>
                       <StyledTableCell>
                         <Button onClick={() => handleUpdate(center)}>
@@ -144,14 +143,14 @@ function ManageCenter() {
                         </Button>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <IconButton onClick={() => handleDelete(center.name)}>
-                          <DeleteIcon className="btnColorDelete" />
-                        </IconButton>
-                      </StyledTableCell>
-                      <StyledTableCell>
                         <Button onClick={() => handleAssign(center)}>
                           Assign{" "}
                         </Button>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <IconButton onClick={() => handleDelete(center.name)}>
+                          <DeleteIcon className="btnColorDelete" />
+                        </IconButton>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
