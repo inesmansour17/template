@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./SideBar.css";
+import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { DesktopOutlined, PieChartOutlined } from "@ant-design/icons";
 
-import { Link } from "react-router-dom";
-const { Header, Content, Sider } = Layout;
+import "./SideBar.css";
+const { Header, Sider } = Layout;
 
 function SideBar() {
   const [collapsed, SetCollapsed] = useState(false);

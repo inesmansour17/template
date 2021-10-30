@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Modal, Button } from "antd";
+import { Form, Input, Select} from "antd";
+
+import * as actions from "../../../redux/actions/centers";
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
-import { Modal, Button } from "antd";
-import { Form, Input, Select, InputNumber } from "antd";
-import * as actions from "../../../redux/actions/centers";
 
 function AddCenter() {
   const isModalVisible = useSelector((state) => state.centers.displayed);
@@ -28,7 +29,8 @@ function AddCenter() {
   const changeCity = (value) => {
     setSelectedCity(value);
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (values) => {
+    console.log(values)
     const center = {
       name,
       governorate: selectedGov,
@@ -49,8 +51,10 @@ function AddCenter() {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit}
       >
         <Form.Item
+          name="center_name"
           label="center_name:"
           rules={[
             {
@@ -68,6 +72,7 @@ function AddCenter() {
         </Form.Item>
         <Form.Item
           label="gouvernorat"
+          name="governorate"
           rules={[
             {
               required: true,
@@ -87,6 +92,7 @@ function AddCenter() {
         </Form.Item>
         <Form.Item
           label="city"
+          name="city"
           rules={[
             {
               required: true,
@@ -107,6 +113,7 @@ function AddCenter() {
 
         <Form.Item
           label="center_capacity:"
+          name="capacity"
           rules={[
             {
               required: true,
@@ -114,12 +121,11 @@ function AddCenter() {
           ]}
         >
           <Input
-            name="capacity"
             /* value={capacity} */ onChange={(e) => setCapacity(e.target.value)}
           />
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Add center </Button>
+        <Button type="primary" htmlType="submit" shape="round" /* onClick={handleSubmit}*/ > Add center </Button>
       </Form>
     </Modal>
   );

@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-
-import "./inscriptionCenter.css";
-
 import { Form, Input, Button, Select, InputNumber } from "antd";
+
+import Navbar from "../Navbar/Navbar";
+import "./inscriptionCenter.css";
 
 function inscriptionCenter() {
   return (

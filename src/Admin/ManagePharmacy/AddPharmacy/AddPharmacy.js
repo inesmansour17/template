@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Modal, Button } from "antd";
+import { Form, Input, Select } from "antd";
+
+import * as actions from "../../../redux/actions/pharmacies";
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
-import { Modal, Button } from "antd";
-import { Form, Input, Select, InputNumber } from "antd";
-import * as actions from "../../../redux/actions/pharmacies";
 
 function AddPharmacy() {
   const isModalVisible = useSelector((state) => state.pharmacies.displayed);

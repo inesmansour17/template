@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-//import * as actions from '../../redux/actions/centers'
+import { useDispatch, useSelector } from "react-redux"; 
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
 import { Modal, Button } from "antd";
-import { Form, Input, Select, InputNumber } from "antd";
+import { Form, Input, Select} from "antd";
 import * as actions from "../../../redux/actions/centers";
 
 function UpdateCenter() {

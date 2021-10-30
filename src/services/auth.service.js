@@ -8,8 +8,8 @@ export const register = async (user) => {
       baseUrl + "/register",
       user
     )
-    localStorage.setItem("token" , result );
-    return result;
+    localStorage.setItem("token" , result.data.token );
+    return result.data.user;
 
   } catch (error) {
     return false;
@@ -18,12 +18,12 @@ export const register = async (user) => {
 
 export const login = async (user) => {
   try {
-    const result = await Axios.put(
+    const result = await Axios.post(
       baseUrl + "/login" ,
       user
     )
-    localStorage.setItem("token" , result );
-    return result.data.user
+    localStorage.setItem("token" , result.data.token );
+    return result.data.token
   } catch (error) {
     return false;
   }
