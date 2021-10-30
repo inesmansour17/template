@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Form, Input} from "antd"; 
+import { Modal, Button, Form, Input,InputNumber} from "antd"; 
 
 import * as actions from "../../../redux/actions/vaccines";
 
@@ -8,19 +8,15 @@ function UpdateVaccine() {
   const isModalVisible = useSelector((state) => state.vaccines.displayUpdate);
   const vaccine = useSelector((state) => state.vaccines.selectedVaccine);
 
-  const [vaccine_type, setVaccine] = useState(vaccine.vaccine_type);
-  const [stock, setStock] = useState(vaccine.stock);
-
   const dispatch = useDispatch();
   const closeModal = () => {
     dispatch(actions.setDisplayUpdate(false));
-  };
-  useEffect(() => {}, []);
+  }; 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (values) => {
     const Updatedvaccine = {
       id: vaccine._id,
-      stock: stock,
+      stock: values.stock,
     };
     dispatch(actions.updateVaccine(Updatedvaccine));
   };
@@ -28,9 +24,8 @@ function UpdateVaccine() {
   return (
     <Modal
       title="Update new vaccine"
-      visible={isModalVisible}
-      okText={"update"}
-      onOk={closeModal}
+      visible={isModalVisible} 
+      footer={null}
       onCancel={closeModal}
     >
       <Form
@@ -38,37 +33,36 @@ function UpdateVaccine() {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit} 
+        initialValues={{
+          ["stock"]: vaccine.stock,
+          ["vaccine_type"]: vaccine.vaccine_type,
+        }}
       >
         <Form.Item
           label="Vaccine name:"
+          name="vaccine_type"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input
-            name="vaccine_type"
-            value={vaccine_type}
-            onChange={(e) => setVaccine(e.target.value)}
-          />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Vaccine stock:"
+          name="stock"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input
-            name="stock"
-            value={stock}
-            onChange={(e) => setStock(e.target.value)}
-          />
+          <InputNumber />
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Update center </Button>
+        <Button htmlType="submit" > Update center </Button>
       </Form>
     </Modal>
   );

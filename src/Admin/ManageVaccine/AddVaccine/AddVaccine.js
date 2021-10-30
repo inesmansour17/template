@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Form, Input} from "antd"; 
+import { Modal, Button, Form, Input, InputNumber} from "antd"; 
 
 import * as actions from "../../../redux/actions/vaccines";
 
 function AddVaccine() {
   const isModalVisible = useSelector((state) => state.vaccines.displayed);
 
-  const [vaccine_type, setVaccine] = useState("");
-  const [stock, setStock] = useState("");
-
   const dispatch = useDispatch();
   const closeModal = () => {
     dispatch(actions.setDisplayed(false));
-  };
-  useEffect(() => {}, []);
+  }; 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (values) => {
     const vaccine = {
-      vaccine_type,
-      stock,
+      vaccine_type:values.vaccine_type,
+      stock:values.stock,
     };
     dispatch(actions.addVaccine(vaccine));
   };
@@ -28,47 +24,41 @@ function AddVaccine() {
       title="Add new vaccine"
       visible={isModalVisible}
       onCancel={closeModal}
+      footer={null}
     >
       <Form
         name="control-ref"
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit} 
       >
         <Form.Item
           label="Vaccine Name:"
+          name="vaccine_type"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input
-            name="vaccine_type"
-            onChange={(e) => {
-              console.log(e.target.value);
-              setVaccine(e.target.value);
-            }}
-          />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Stock:"
+          name="stock"
           rules={[
             {
               required: true,
+              type: 'number',
+              min: 0,
             },
           ]}
         >
-          <Input
-            name="stock"
-            onChange={(e) => {
-              console.log(e.target.value);
-              setStock(e.target.value);
-            }}
-          />
+          <InputNumber />
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Add Vaccine </Button>
+        <Button type="primary" htmlType="submit" shape="round"> Add Vaccine </Button>
       </Form>
     </Modal>
   );

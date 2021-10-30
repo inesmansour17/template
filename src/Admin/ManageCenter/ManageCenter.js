@@ -87,7 +87,7 @@ function ManageCenter() {
                     <StyledTableCell> {center.governorate}</StyledTableCell>
                     <StyledTableCell> {center.city}</StyledTableCell>
                     <StyledTableCell> {center.center_capacity}</StyledTableCell>
-                    <StyledTableCell> {center.type_vaccine}</StyledTableCell>
+                    <StyledTableCell> {center.type_vaccine ? center.type_vaccine : "Not yet"}</StyledTableCell>
                     <StyledTableCell> {center.number_vaccine}</StyledTableCell>
                     <StyledTableCell>
                       <Button onClick={()=>handleUpdate(center)}>Update </Button>

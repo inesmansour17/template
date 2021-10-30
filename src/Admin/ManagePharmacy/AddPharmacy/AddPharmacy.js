@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button } from "antd";
-import { Form, Input, Select } from "antd";
+import { Modal, Button, InputNumber,Form, Input, Select } from "antd";
 
 import * as actions from "../../../redux/actions/pharmacies";
 import gouvernorat from "../../../constants/gouvernorat";
@@ -9,32 +8,23 @@ import villes from "../../../constants/villes";
 
 function AddPharmacy() {
   const isModalVisible = useSelector((state) => state.pharmacies.displayed);
-  const [cities, setCities] = useState([]);
-  const [selectedGov, setSelectedGov] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [name, setName] = useState("");
-  const [capacity, setCapacity] = useState(0);
+  const [cities, setCities] = useState([]); 
   const dispatch = useDispatch();
   const closeModal = () => {
     dispatch(actions.setDisplayed(false));
-  };
-  useEffect(() => {}, []);
+  }; 
 
-  const changeGov = (gover) => {
-    setSelectedGov(gover);
+  const changeGov = (gover) => { 
     const found = villes.find((ville) => ville.gov === gover).cities;
     setCities(found ? found : []);
   };
-
-  const changeCity = (value) => {
-    setSelectedCity(value);
-  };
-  const handleSubmit = async () => {
+ 
+  const handleSubmit = async (values) => {
     const pharmacy = {
-      name,
-      governorate: selectedGov,
-      city: selectedCity,
-      pharmacy_capacity: capacity,
+      name:values.name,
+      governorate: values.governorate,
+      city: values.city,
+      pharmacy_capacity: values.capacity,
       number_vaccine: 0,
     };
     dispatch(actions.addPharmacy(pharmacy));
@@ -44,38 +34,36 @@ function AddPharmacy() {
       title="Add new pharmacy"
       visible={isModalVisible}
       onCancel={closeModal}
+      footer={null}
     >
       <Form
         name="control-ref"
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit} 
       >
         <Form.Item
           label="pharmacy_name:"
+          name="name"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input
-            name="pharmacy_name"
-            onChange={(e) => {
-              console.log(e.target.value);
-              setName(e.target.value);
-            }}
-          />
+          <Input />
         </Form.Item>
         <Form.Item
           label="gouvernorat"
+          name="governorate"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Select value={selectedGov} onChange={changeGov.bind(this)}>
+          <Select onChange={changeGov}>
             <Select.Option>--Choose Governorate--</Select.Option>
             {gouvernorat?.map((gov, key) => {
               return (
@@ -88,13 +76,14 @@ function AddPharmacy() {
         </Form.Item>
         <Form.Item
           label="city"
+          name="city"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Select value={selectedCity} onChange={changeCity}>
+          <Select>
             <Select.Option>--Choose City--</Select.Option>
             {cities?.map((city, key) => {
               return (
@@ -108,19 +97,19 @@ function AddPharmacy() {
 
         <Form.Item
           label="pharmacy_capacity:"
+          name="capacity"
           rules={[
             {
               required: true,
+              type: 'number',
+              min: 0
             },
           ]}
         >
-          <Input
-            name="capacity"
-            /* value={capacity} */ onChange={(e) => setCapacity(e.target.value)}
-          />
+          <InputNumber/>
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Add pharmacy </Button>
+        <Button type="primary" htmlType="submit" shape="round"> Add pharmacy </Button>
       </Form>
     </Modal>
   );
