@@ -1,15 +1,37 @@
 import React, { useEffect } from "react";
 import { Layout, Button } from "antd";
-import DeleteIcon from "@material-ui/icons/Delete"; 
-import {IconButton,Table,TableBody,TableCell,TableHead,TableRow,withStyles} from "@material-ui/core";    
-import { useDispatch, useSelector } from "react-redux"
+import DeleteIcon from "@material-ui/icons/Delete";
+import {
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  withStyles,
+  Box,
+  Modal,
+  Typography,
+} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../redux/actions/centers";
 
-import * as actions from '../../redux/actions/centers'  
 import UpdateCenter from "./UpdateCenter/UpdateCenter";
 import SideBar from "../../SideBar/SideBar";
 import AddCenter from "./AddCenter/AddCenter";
 
 const { Content } = Layout;
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",
@@ -30,40 +52,45 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function ManageCenter() {
-  const isAddVisible = useSelector((state) => state.centers.displayed) 
-  const isUpdateVisible = useSelector((state) => state.centers.displayUpdate) 
-  const centers = useSelector((state) => state.centers)    
-  const dispatch = useDispatch() 
-  
+  const isAddVisible = useSelector((state) => state.centers.displayed);
+  const isUpdateVisible = useSelector((state) => state.centers.displayUpdate);
+  const centers = useSelector((state) => state.centers);
+  const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     try {
-      dispatch(actions.fetchCenters()) 
+      dispatch(actions.fetchCenters());
     } catch (e) {
-      console.log('errroooor')
-    }  
-    console.log('center state : ', centers)
-    
-  }, [])
-  const handleUpdate = (center) =>{
-    dispatch(actions.setSelectedCenter(center)) 
-    dispatch(actions.setDisplayUpdate(true)) 
-  }
-  const handleDelete =  (name) => {
-    dispatch(actions.deleteCenter(name))
+      console.log("errroooor");
+    }
+    console.log("center state : ", centers);
+  }, []);
+  const handleUpdate = (center) => {
+    dispatch(actions.setSelectedCenter(center));
+    dispatch(actions.setDisplayUpdate(true));
+  };
+  const handleDelete = (name) => {
+    dispatch(actions.deleteCenter(name));
+  };
 
-  }
-  return ( 
-      <Layout style={{ minHeight: "100vh" }}>
-        <SideBar />
-        <Layout className="site-layout">
-          <Content style={{ margin: "0 16px" }}>
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, minHeight: 360 }}
+  return (
+    <Layout style={{ minHeight: "100vh" }}>
+      <SideBar />
+      <Layout className="site-layout">
+        <Content style={{ margin: "0 16px" }}>
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}
+          >
+            <Button
+              type="primary"
+              onClick={() => dispatch(actions.setDisplayed(true))}
             >
-             <Button type="primary" onClick={()=>dispatch(actions.setDisplayed(true)) }>
               Add new center
             </Button>
+
              { isAddVisible && <AddCenter /> }
              { isUpdateVisible && <UpdateCenter /> }
               <Table aria-label="simple table">
@@ -104,8 +131,7 @@ function ManageCenter() {
             </div>
           </Content>
         </Layout>{" "}
-      </Layout> 
-  );
+      </Layout> );
 }
 
 export default ManageCenter;

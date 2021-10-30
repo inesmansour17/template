@@ -73,3 +73,17 @@ export const deleteCenter = (name) => async (dispatch) => {
     center: name,
   });
 };
+
+export const addVaccineToCenter =
+  (nameCenter, idVaccin, quantity) => async (dispatch) => {
+    const center = await api.updateCenterVaccine(
+      nameCenter,
+      idVaccin,
+      quantity
+    ); //await call api
+    dispatch({
+      type: types.ADD_VACCINE_TO_CENTER,
+      center: center,
+    });
+    //dispatch action ....
+  };
