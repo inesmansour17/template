@@ -26,6 +26,12 @@ const centers = (state = initialState, action) => {
         ...state,
         displayUpdate: action.value,
       };
+    case types.SET_DISPLAY_UPDATE_VAC:
+      return {
+        ...state,
+        displayUpdateVac: action.value,
+      };
+
     case types.FETCH_CENTERS_REQUEST:
       return { ...state, loading: true, errors: true };
     case types.FETCH_CENTERS_SUCCESS:
@@ -59,6 +65,7 @@ const centers = (state = initialState, action) => {
       );
       console.log(newCenters);
       return { ...state, list: newCenters };
+
     case types.ADD_VACCINE_TO_CENTER:
       const updatedCenterVaccine = state.list.map((center) => {
         if (center.id === action.center._id) {

@@ -1,5 +1,6 @@
 import * as types from "../../types";
 import * as api from "../../../services/vaccines.service";
+
 export const setSelectedVaccine = (vaccine) => ({
   type: types.SET_SELECTED_VACCINE,
   vaccine,

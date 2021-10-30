@@ -19,6 +19,7 @@ import * as actions from "../../redux/actions/centers";
 import UpdateCenter from "./UpdateCenter/UpdateCenter";
 import SideBar from "../../SideBar/SideBar";
 import AddCenter from "./AddCenter/AddCenter";
+import AssignVaccine from "./AssignVaccine/AssignVaccine";
 
 const { Content } = Layout;
 const style = {
@@ -54,11 +55,12 @@ const StyledTableRow = withStyles((theme) => ({
 function ManageCenter() {
   const isAddVisible = useSelector((state) => state.centers.displayed);
   const isUpdateVisible = useSelector((state) => state.centers.displayUpdate);
+  const isUpdateVacVisible = useSelector(
+    (state) => state.centers.displayUpdateVac
+  );
   const centers = useSelector((state) => state.centers);
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     try {
       dispatch(actions.fetchCenters());
@@ -73,6 +75,11 @@ function ManageCenter() {
   };
   const handleDelete = (name) => {
     dispatch(actions.deleteCenter(name));
+  };
+
+  const handleAssign = (center) => {
+    dispatch(actions.setSelectedCenter(center));
+    dispatch(actions.setDisplayUpdateVac(true));
   };
 
   return (
@@ -91,47 +98,70 @@ function ManageCenter() {
               Add new center
             </Button>
 
-             { isAddVisible && <AddCenter /> }
-             { isUpdateVisible && <UpdateCenter /> }
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow> 
-                    <TableCell>Name</TableCell>
-                    <TableCell>Governorate</TableCell>
-                    <TableCell>City</TableCell>
-                    <TableCell>Capacity</TableCell>
-                    <TableCell>Vac-Type</TableCell>
-                    <TableCell>Vac-Stock</TableCell>
-                    <TableCell>Update</TableCell>
-                    <TableCell>Delete</TableCell>
-                  </TableRow>
-                </TableHead>
-                {centers.loading && <div>Loading ... </div>}
-                <TableBody>
-                {!centers.loading && centers.list && centers.list.map((center, index) =>   
-                  <StyledTableRow key={index}> 
-                    <StyledTableCell> {center.name}</StyledTableCell>
-                    <StyledTableCell> {center.governorate}</StyledTableCell>
-                    <StyledTableCell> {center.city}</StyledTableCell>
-                    <StyledTableCell> {center.center_capacity}</StyledTableCell>
-                    <StyledTableCell> {center.type_vaccine ? center.type_vaccine : "Not yet"}</StyledTableCell>
-                    <StyledTableCell> {center.number_vaccine}</StyledTableCell>
-                    <StyledTableCell>
-                      <Button onClick={()=>handleUpdate(center)}>Update </Button>
-                    </StyledTableCell>
-                    <StyledTableCell> 
-                      <IconButton onClick={()=> handleDelete(center.name)}>
-                        <DeleteIcon className="btnColorDelete" />
-                      </IconButton>
-                    </StyledTableCell>
-                  </StyledTableRow>)
-                  }
-                </TableBody>
-              </Table>
-            </div>
-          </Content>
-        </Layout>{" "}
-      </Layout> );
+            {isAddVisible && <AddCenter />}
+            {isUpdateVisible && <UpdateCenter />}
+            {isUpdateVacVisible && <AssignVaccine />}
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Governorate</TableCell>
+                  <TableCell>City</TableCell>
+                  <TableCell>Capacity</TableCell>
+                  <TableCell>Vaccine Type</TableCell>
+                  <TableCell>Vaccine Stock</TableCell>
+                  <TableCell>Update</TableCell>
+                  <TableCell>Delete</TableCell>
+                  <TableCell>Assign Vaccine</TableCell>
+                </TableRow>
+              </TableHead>
+              {centers.loading && <div>Loading ... </div>}
+              <TableBody>
+                {!centers.loading &&
+                  centers.list &&
+                  centers.list.map((center, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell> {center.name}</StyledTableCell>
+                      <StyledTableCell> {center.governorate}</StyledTableCell>
+                      <StyledTableCell> {center.city}</StyledTableCell>
+                      <StyledTableCell>
+                        {" "}
+                        {center.center_capacity}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {" "}
+                        {center.type_vaccine
+                          ? center.type_vaccine
+                          : "Not assigned"}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {" "}
+                        {center.number_vaccine}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button onClick={() => handleUpdate(center)}>
+                          Update{" "}
+                        </Button>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <IconButton onClick={() => handleDelete(center.name)}>
+                          <DeleteIcon className="btnColorDelete" />
+                        </IconButton>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button onClick={() => handleAssign(center)}>
+                          Assign{" "}
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </div>
+        </Content>
+      </Layout>{" "}
+    </Layout>
+  );
 }
 
 export default ManageCenter;

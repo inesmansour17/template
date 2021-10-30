@@ -15,6 +15,11 @@ export const setDisplayUpdate = (value) => ({
   value,
 });
 
+export const setDisplayUpdateVac = (value) => ({
+  type: types.SET_DISPLAY_UPDATE_VAC,
+  value,
+});
+
 export const fetchCenters = () => async (dispatch) => {
   dispatch({
     type: types.FETCH_CENTERS_REQUEST,
