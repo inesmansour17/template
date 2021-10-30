@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import { useDispatch, useSelector } from "react-redux" 
-import { Modal, Button, Form, Input, Select} from "antd"; 
+import { Modal, Button, Form, Input, Select, InputNumber} from "antd"; 
 
 import * as actions from '../../../redux/actions/pharmacies' 
 import gouvernorat from '../../../constants/gouvernorat'
@@ -18,28 +18,15 @@ function UpdatePharmacy() {
   const closeModal = () => {
     dispatch(actions.setDisplayUpdate(false))  
   };
-  useEffect(() => {
-     
-  }, [])
   
-  const changeGov = (gover) => {
-    setSelectedGov(gover);
-    const found = villes.find((ville) => ville.gov === gover).cities 
-    setCities(found ? found: []);
-        
-	}
-
-	const changeCity = (value) => {
-		setSelectedCity(value); 
-	}
-  const handleSubmit = async () =>{
+  const handleSubmit = async (values) =>{
     const Updatedpharmacy ={
       id:pharmacy._id,
-      name, 
-      governorate:selectedGov, 
-      city:selectedCity,
-      pharmacy_capacity:capacity,
-      number_vaccine:capacity,
+      name:values.name,
+      governorate: values.governorate,
+      city: values.city,
+      pharmacy_capacity: values.capacity,
+      number_vaccine: 0,
     } 
     dispatch(actions.updatePharmacy(Updatedpharmacy)) 
   }
@@ -48,36 +35,44 @@ function UpdatePharmacy() {
   return ( 
      <Modal 
         title="Update new pharmacy" 
-        visible={isModalVisible} 
-        okText={'update'}
-        onOk={closeModal}
-        onCancel={closeModal}>
+        visible={isModalVisible}  
+        onCancel={closeModal}
+        footer={null}
+      >
         <Form
           name="control-ref"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 14 }}
           layout="horizontal"
-          
+          onFinish={handleSubmit} 
+        initialValues={{
+          ["name"]: pharmacy.name,
+          ["governorate"]: pharmacy.governorate,
+          ["city"]: pharmacy.city,
+          ["capacity"]: pharmacy.pharmacy_capacity,
+        }}
         >
           <Form.Item
             label="pharmacy_name:"
+            name="name"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input name="pharmacy_name" value={name} onChange={e => setName(e.target.value)}/>
+            <Input />
           </Form.Item>
           <Form.Item
             label="gouvernorat"
+            name="governorate"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select value={selectedGov} onChange={changeGov}>
+            <Select>
               <Select.Option>--Choose Governorate--</Select.Option>
               {gouvernorat?.map((gov, key) => {
                 return <Select.Option key={key} value={gov} >{gov}</Select.Option>
@@ -86,13 +81,14 @@ function UpdatePharmacy() {
           </Form.Item>
           <Form.Item
             label="city"
+            name="city"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select value={selectedCity} onChange={changeCity}>
+            <Select>
             <Select.Option>--Choose City--</Select.Option>
             {cities?.map((city, key) => {
               return <Select.Option key={key} value={city}>{city}</Select.Option>
@@ -103,16 +99,19 @@ function UpdatePharmacy() {
            
           <Form.Item
             label="pharmacy_capacity:"
+            name="capacity"
             rules={[
               {
                 required: true,
+                type: 'number',
+                min: 0,
               },
             ]}
           >
-            <Input name="capacity" value={capacity} onChange={e => setCapacity(e.target.value)}/>
+           <InputNumber />
           </Form.Item>
 
-          <Button onClick={handleSubmit}> Update pharmacy </Button>
+          <Button type="primary" htmlType="submit" shape="round"> Update pharmacy </Button>
         </Form>
       </Modal>
      

@@ -88,7 +88,7 @@ function ManagePharmacy() {
                     <StyledTableCell> {pharmacy.governorate}</StyledTableCell>
                     <StyledTableCell> {pharmacy.city}</StyledTableCell>
                     <StyledTableCell> {pharmacy.pharmacy_capacity}</StyledTableCell>
-                    <StyledTableCell> {pharmacy.type_vaccine}</StyledTableCell>
+                    <StyledTableCell> {pharmacy.type_vaccine ? pharmacy.type_vaccine : "Not yet"}</StyledTableCell>
                     <StyledTableCell> {pharmacy.number_vaccine}</StyledTableCell>
                     <StyledTableCell>
                       <Button onClick={()=>handleUpdate(pharmacy)}>Update </Button>

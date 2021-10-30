@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"; 
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
-import { Modal, Button } from "antd";
+import { Modal, Button, InputNumber } from "antd";
 import { Form, Input, Select} from "antd";
 import * as actions from "../../../redux/actions/centers";
 
@@ -10,33 +10,27 @@ function UpdateCenter() {
   const isModalVisible = useSelector((state) => state.centers.displayUpdate);
   const center = useSelector((state) => state.centers.selectedCenter);
   const [cities, setCities] = useState([]);
-  const [selectedGov, setSelectedGov] = useState(center.governorate);
-  const [selectedCity, setSelectedCity] = useState(center.city);
-  const [name, setName] = useState(center.name);
-  const [capacity, setCapacity] = useState(center.center_capacity);
   const dispatch = useDispatch();
+
   const closeModal = () => {
+    console.log(center)
     dispatch(actions.setDisplayUpdate(false));
   };
-  useEffect(() => {}, []);
-
-  const changeGov = (gover) => {
-    setSelectedGov(gover);
+  
+  const changeGov = (gover) => { 
     const found = villes.find((ville) => ville.gov === gover).cities;
     setCities(found ? found : []);
   };
-
-  const changeCity = (value) => {
-    setSelectedCity(value);
-  };
-  const handleSubmit = async () => {
+ 
+  const handleSubmit = async (values) => {
+    console.log(values)
     const Updatedcenter = {
-      id: center._id,
-      name,
-      governorate: selectedGov,
-      city: selectedCity,
-      center_capacity: capacity,
-      number_vaccine: capacity,
+      id:center.id,
+      name:values.name,
+      governorate: values.governorate,
+      city: values.city,
+      center_capacity: values.capacity,
+      number_vaccine: 0,
     };
     dispatch(actions.updateCenter(Updatedcenter));
   };
@@ -45,8 +39,7 @@ function UpdateCenter() {
     <Modal
       title="Update new center"
       visible={isModalVisible}
-      okText={"update"}
-      onOk={closeModal}
+      footer={null}
       onCancel={closeModal}
     >
       <Form
@@ -54,30 +47,35 @@ function UpdateCenter() {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit} 
+        initialValues={{
+          ["name"]: center.name,
+          ["governorate"]: center.governorate,
+          ["city"]: center.city,
+          ["capacity"]: center.center_capacity,
+        }}
       >
         <Form.Item
           label="center_name:"
+          name="name"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input
-            name="center_name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Input />
         </Form.Item>
         <Form.Item
           label="gouvernorat"
+          name="governorate"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Select value={selectedGov} onChange={changeGov}>
+          <Select onChange={changeGov}>
             <Select.Option>--Choose Governorate--</Select.Option>
             {gouvernorat?.map((gov, key) => {
               return (
@@ -89,6 +87,7 @@ function UpdateCenter() {
           </Select>
         </Form.Item>
         <Form.Item
+          name="city"
           label="city"
           rules={[
             {
@@ -96,7 +95,7 @@ function UpdateCenter() {
             },
           ]}
         >
-          <Select value={selectedCity} onChange={changeCity}>
+          <Select>
             <Select.Option>--Choose City--</Select.Option>
             {cities?.map((city, key) => {
               return (
@@ -110,20 +109,19 @@ function UpdateCenter() {
 
         <Form.Item
           label="center_capacity:"
+          name="capacity"
           rules={[
             {
               required: true,
+              type: 'number',
+              min: 0,
             },
           ]}
         >
-          <Input
-            name="capacity"
-            value={capacity}
-            onChange={(e) => setCapacity(e.target.value)}
-          />
+          <InputNumber />
         </Form.Item>
 
-        <Button onClick={handleSubmit}> Update center </Button>
+        <Button type="primary" htmlType="submit" shape="round"> Update center </Button>
       </Form>
     </Modal>
   );

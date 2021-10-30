@@ -90,85 +90,48 @@ function ManageCenter() {
             >
               Add new center
             </Button>
-            {isAddVisible && <AddCenter />}
-            {isUpdateVisible && <UpdateCenter />}
-            <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Governorate</TableCell>
-                  <TableCell>City</TableCell>
-                  <TableCell>Capacity</TableCell>
-                  <TableCell>Vac-Type</TableCell>
-                  <TableCell>Vac-Stock</TableCell>
-                  <TableCell>Update</TableCell>
-                  <TableCell>Delete</TableCell>
-                  <TableCell>Assign Vaccine</TableCell>
-                </TableRow>
-              </TableHead>
-              {centers.loading && <div>Loading ... </div>}
-              <TableBody>
-                {!centers.loading &&
-                  centers.list &&
-                  centers.list.map((center, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell> {center.name}</StyledTableCell>
-                      <StyledTableCell> {center.governorate}</StyledTableCell>
-                      <StyledTableCell> {center.city}</StyledTableCell>
-                      <StyledTableCell>
-                        {" "}
-                        {center.center_capacity}
-                      </StyledTableCell>
-                      <StyledTableCell> {center.type_vaccine}</StyledTableCell>
-                      <StyledTableCell>
-                        {" "}
-                        {center.number_vaccine}
-                      </StyledTableCell>
-                      <StyledTableCell>
-                        <Button onClick={() => handleUpdate(center)}>
-                          Update{" "}
-                        </Button>
-                      </StyledTableCell>
-                      <StyledTableCell>
-                        <IconButton onClick={() => handleDelete(center.name)}>
-                          <DeleteIcon className="btnColorDelete" />
-                        </IconButton>
-                      </StyledTableCell>
-                      <StyledTableCell>
-                        <Button onClick={() => handleOpen}>assign</Button>
-                        <Modal
-                          open={open}
-                          onClose={handleClose}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <Box sx={style}>
-                            <Typography
-                              id="modal-modal-title"
-                              variant="h6"
-                              component="h2"
-                            >
-                              Hope
-                            </Typography>
-                            <Typography
-                              id="modal-modal-description"
-                              sx={{ mt: 2 }}
-                            >
-                              Duis mollis, est non commodo luctus, nisi erat
-                              porttitor ligula.
-                            </Typography>
-                          </Box>
-                        </Modal>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </div>
-        </Content>
-      </Layout>{" "}
-    </Layout>
-  );
+
+             { isAddVisible && <AddCenter /> }
+             { isUpdateVisible && <UpdateCenter /> }
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow> 
+                    <TableCell>Name</TableCell>
+                    <TableCell>Governorate</TableCell>
+                    <TableCell>City</TableCell>
+                    <TableCell>Capacity</TableCell>
+                    <TableCell>Vac-Type</TableCell>
+                    <TableCell>Vac-Stock</TableCell>
+                    <TableCell>Update</TableCell>
+                    <TableCell>Delete</TableCell>
+                  </TableRow>
+                </TableHead>
+                {centers.loading && <div>Loading ... </div>}
+                <TableBody>
+                {!centers.loading && centers.list && centers.list.map((center, index) =>   
+                  <StyledTableRow key={index}> 
+                    <StyledTableCell> {center.name}</StyledTableCell>
+                    <StyledTableCell> {center.governorate}</StyledTableCell>
+                    <StyledTableCell> {center.city}</StyledTableCell>
+                    <StyledTableCell> {center.center_capacity}</StyledTableCell>
+                    <StyledTableCell> {center.type_vaccine ? center.type_vaccine : "Not yet"}</StyledTableCell>
+                    <StyledTableCell> {center.number_vaccine}</StyledTableCell>
+                    <StyledTableCell>
+                      <Button onClick={()=>handleUpdate(center)}>Update </Button>
+                    </StyledTableCell>
+                    <StyledTableCell> 
+                      <IconButton onClick={()=> handleDelete(center.name)}>
+                        <DeleteIcon className="btnColorDelete" />
+                      </IconButton>
+                    </StyledTableCell>
+                  </StyledTableRow>)
+                  }
+                </TableBody>
+              </Table>
+            </div>
+          </Content>
+        </Layout>{" "}
+      </Layout> );
 }
 
 export default ManageCenter;
