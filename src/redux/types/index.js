@@ -10,6 +10,7 @@ export const FETCH_CENTER_BY_ID = "FETCH_CENTER_BY_ID";
 export const ADD_CENTER = "ADD_CENTER";
 export const UPDATE_CENTER = "UPDATE_CENTER";
 export const DELETE_CENTER = "DELETE_CENTER";
+export const ADD_VACCINE_TO_CENTER = "ADD_VACCINE_TO_CENTER";
 
 //mtaa pharmacie
 export const SET_SELECTED_PHARMACY = "SET_SELECTED_PHARMACY";

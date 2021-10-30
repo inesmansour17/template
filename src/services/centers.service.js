@@ -28,3 +28,10 @@ export const fetchCenters = async () => {
   const result = await Axios.get(baseUrl + "/all");
   return result.data.centers;
 };
+export const updateCenterVaccine = async (centerName, vaccinId, quantity) => {
+  const result = await Axios.post(`${baseUrl}/deposit/${centerName}`, {
+    idVacc: vaccinId,
+    amount: quantity,
+  });
+  return result.data;
+};
