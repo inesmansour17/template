@@ -6,14 +6,12 @@ import Home from "./Home/Home";
 import Admin from "./Admin/Admin";
 import ManageCenter from "./Admin/ManageCenter/ManageCenter";
 import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
-
-import inscriptionCenter from "./inscriptionCenter/inscriptionCenter";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import updateInscri from "./updateInscri/updateInscri";
 import reportRdv from "./reportRdv/reportRdv";
 import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
-
+import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
 
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
@@ -27,8 +25,8 @@ class AppRouter extends React.Component {
           <Route path="/ManagePharmacy" component={ManagePharmacy}></Route>
 
           <Route
-            path="/inscriptionCenter"
-            component={inscriptionCenter}
+            path="/inscriptionInCenter"
+            component={InscriptionInCenter}
           ></Route>
           <Route path="/ManageVaccines" component={ManageVaccine}></Route>
 

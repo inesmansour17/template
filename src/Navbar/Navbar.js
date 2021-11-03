@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../img/logoTun.png";
 import i18n from "../i18n";
-import React from 'react'
+import React from "react";
 
 const { SubMenu } = Menu;
 const centerStyle = {
@@ -36,7 +36,7 @@ function Navbar() {
 
         <SubMenu key="Inscription" title="S'inscrire">
           <Menu.Item key="inscriC">
-            <Link to="/inscriptionCenter">Inscription dans un centre</Link>
+            <Link to="/inscriptionInCenter">Inscription dans un centre</Link>
           </Menu.Item>
           <Menu.Item key="inscriP">
             <Link to="/inscriptionPharmacie">
@@ -53,9 +53,7 @@ function Navbar() {
           <a href="#Contact">Contactez-nous</a>
         </Menu.Item>
         <Menu.Item key="Login">
-          <Link to="/login">
-            Login
-          </Link>
+          <Link to="/login">Login</Link>
         </Menu.Item>
         <SubMenu key="EspaceCitoyen" title="Espace Citoyen">
           <Menu.Item key="attestation">Imprimer attestation</Menu.Item>
