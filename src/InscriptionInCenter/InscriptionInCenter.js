@@ -56,7 +56,7 @@ function InscriptionInCenter() {
 
         <Form.Item
           label="firstname"
-          name="Nom"
+          name="firstname"
           rules={[
             {
               required: true,
