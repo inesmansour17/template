@@ -1,9 +1,13 @@
 import Axios from "axios";
 
-let baseUrl = "http://localhost:5000/api/users/";
+let baseUrl = "http://localhost:5000/api/auth";
 
-export const addUser = async (user) => {
-  const result = await Axios.post(baseUrl, user);
-  console.log(result);
-  return result.data;
+export const registerCenter = async (user) => {
+  try {
+    const result = await Axios.post(baseUrl + "/register", user);
+    localStorage.setItem("token", result.data.token);
+    return result.data.user;
+  } catch (error) {
+    return false;
+  }
 };

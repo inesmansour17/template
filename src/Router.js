@@ -21,6 +21,7 @@ class AppRouter extends React.Component {
       <Router history={history}>
         <Switch>
           <Route path="/Home" component={Home}></Route>
+
           <Route path="/ManageCenter" component={ManageCenter}></Route>
           <Route path="/ManagePharmacy" component={ManagePharmacy}></Route>
 

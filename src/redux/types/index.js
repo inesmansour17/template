@@ -44,11 +44,6 @@ export const DELETE_VACCINE = "DELETE_VACCINE";
 export const SET_DISPLAYED_VACCINE = "SET_DISPLAYED_VACCINE";
 export const SET_DISPLAY_UPDATE_VACCINE = "SET_DISPLAY_UPDATE_VACCINE";
 
-//types users
+//types register in center
 
-export const ADD_USER = "ADD_USER";
-
-export const FETCH_USER_BY_ID = "FETCH_USER_BY_ID";
-
-export const UPDATE_USER = "UPDATE_USER";
-export const DELETE_USER = "DELETE_USER";
+export const REGISTER_CENTER = "REGISTER_CENTER";

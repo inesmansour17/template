@@ -27,7 +27,7 @@ function InscriptionInCenter() {
       governorate: values.governorate,
       city: values.city,
     };
-    dispatch(actions.addUser(user));
+    dispatch(actions.registerCenter(user));
   };
   return (
     <div>
