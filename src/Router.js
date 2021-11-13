@@ -12,6 +12,7 @@ import reportRdv from "./reportRdv/reportRdv";
 import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
+import Chatbot from "./Chatbot"
 
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
@@ -44,6 +45,7 @@ class AppRouter extends React.Component {
           ></Route>
 
           <Route path="/Admin" component={Admin}></Route>
+          <Route path="/Chatbot" component={Chatbot}></Route>
         </Switch>
       </Router>
     );
