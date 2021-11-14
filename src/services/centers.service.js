@@ -3,9 +3,21 @@ import Axios from "axios";
 let baseUrl = "http://localhost:5000/api/centers";
 
 export const addCenter = async (center) => {
-  const result = await Axios.post(baseUrl + "/add", center);
-  console.log(result);
-  return result.data;
+  const result = await Axios.post(baseUrl + "/add", center)
+    .then((res) => {
+      if (res.status === 201) {
+        console.log("sucess");
+        console.log(res.data);
+      }
+    })
+
+    .catch(function(error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+      }
+    });
+  return result.data.center;
 };
 
 export const updateCenter = async (center) => {
@@ -20,6 +32,7 @@ export const deleteCenter = async (name) => {
 
 export const fetchCenterByName = async (name) => {
   const result = await Axios.get(baseUrl + "/name/" + name);
+
   return result.data.center;
 };
 
