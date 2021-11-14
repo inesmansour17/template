@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col } from "antd";
 import "./Contact.css";
 import { PhoneOutlined, IeOutlined } from "@ant-design/icons";
+
 const style = {
   background: "white",
   padding: "6px",
@@ -10,7 +11,9 @@ const style = {
 
 function Contact() {
   return (
+    
     <div id="Contact">
+    
       <Row gutter={{ xs: 8, sm: 8, md: 18, lg: 32 }}>
         <Col className="gutter-row" span={12}>
           <div style={style} className="textStyle">
