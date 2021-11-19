@@ -8,6 +8,8 @@ import Footer from "./Footer";
 import Navbar from "../Navbar/Navbar";
 import tal from "../img/box-img2.jpg";
 import tal3 from "../img/tal3.jpg";
+import index from "./index";
+import Chatbot from '../Chatbot';
 
 const contentStyle = {
   height: "650px",
@@ -37,7 +39,10 @@ function Home() {
       <br />
       <Contact />
       <br />
+      <Chatbot />
+      <br />
       <Footer />
+      
     </div>
   );
 }

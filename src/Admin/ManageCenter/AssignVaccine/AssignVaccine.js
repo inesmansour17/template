@@ -51,7 +51,7 @@ function AssignVaccine() {
         onFinish={handleSubmit}
         initialValues={{
           ["name"]: center.name,
-          ["type_vaccine"]: center.type_vaccine,
+          ["type_vaccine"]: center.type_vaccine?.vaccine_type,
           ["number_vaccine"]: center.stock,
         }}
       >
