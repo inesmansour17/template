@@ -16,6 +16,21 @@ export const register = async (user) => {
   }
 } 
 
+
+export const registerpharmacy = async (user) => {
+  try {
+    const result = await Axios.post(
+      baseUrl + "/registerpharmacy",
+      user
+    )
+    localStorage.setItem("token" , result.data.token );
+    return result.data.user;
+
+  } catch (error) {
+    return false;
+  }
+} 
+
 export const login = async (user) => {
   try {
     const result = await Axios.post(
