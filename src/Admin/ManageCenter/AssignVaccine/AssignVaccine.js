@@ -29,10 +29,14 @@ function AssignVaccine() {
       id: center.id,
       name: values.name,
       type_vaccine: values.type_vaccine,
-      number_vaccine: values.stock,
+      number_vaccine: values.number_vaccine,
     };
     dispatch(
-      actions.addVaccineToCenter(values.name, values.type_vaccine, values.stock)
+      actions.addVaccineToCenter(
+        values.name,
+        values.type_vaccine,
+        values.number_vaccine
+      )
     );
   };
 
@@ -52,7 +56,7 @@ function AssignVaccine() {
         initialValues={{
           ["name"]: center.name,
           ["type_vaccine"]: center.type_vaccine?.vaccine_type,
-          ["number_vaccine"]: center.stock,
+          ["number_vaccine"]: center.number_vaccine,
         }}
       >
         <Form.Item
@@ -75,7 +79,7 @@ function AssignVaccine() {
             },
           ]}
         >
-          <Select onChange={(vacc) => changeVac(vacc)}>
+          <Select>
             <Select.Option>--choose vaccine type--</Select.Option>
             {vaccines?.map((vacc, key) => {
               return (
@@ -88,7 +92,7 @@ function AssignVaccine() {
         </Form.Item>
         <Form.Item
           label="Stock"
-          name="stock"
+          name="number_vaccine"
           rules={[
             {
               required: true,
