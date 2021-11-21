@@ -42,7 +42,11 @@ function SideBar() {
               Manage vaccines
             </Link>
           </Menu.Item>
-
+          <Menu.Item key="5" icon={<DesktopOutlined />}>
+            <Link exact to="/ManageVolunteers">
+              Manage volunteers
+            </Link>
+          </Menu.Item>
           <Menu.Item key="5" icon={<DesktopOutlined />}>
             Open Days
           </Menu.Item>
