@@ -50,11 +50,8 @@ export const REGISTER_CENTER = "REGISTER_CENTER";
 
 //types users
 export const ADD_USER = "ADD_USER";
-<<<<<<< HEAD
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
-=======
->>>>>>> 70c3bcbbec0744adcbc88f321e08ebbffca815a4
 export const GET_ALL_USER = "GET_ALL_USER";
 export const SET_DISPLAYED_USER = "SET_DISPLAYED_USER";
 export const SET_DISPLAY_UPDATE_USER = "SET_DISPLAY_UPDATE_USER";
