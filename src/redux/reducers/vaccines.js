@@ -57,7 +57,7 @@ const vaccines = (state = initialState, action) => {
 
     case types.DELETE_VACCINE:
       const newVaccines = state.list.filter(
-        (vaccine) => vaccine.id !== action.vaccine
+        (vaccine) => vaccine.vaccine_type !== action.vaccine
       );
       console.log(newVaccines);
       return { ...state, list: newVaccines };
