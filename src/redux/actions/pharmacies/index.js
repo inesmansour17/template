@@ -6,7 +6,7 @@ export const setSelectedPharmacy = (pharmacy) => ({
 })
 
 export const setDisplayed = (value) => ({
-  type: types.SET_DISPLAYED,
+  type: types.SET_DISPLAYED_PHARMACY,
   value
 })
 

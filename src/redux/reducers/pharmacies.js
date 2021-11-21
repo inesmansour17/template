@@ -16,7 +16,7 @@ const pharmacies = (state = initialState, action) => {
         ...state,
         selectedPharmacy: action.pharmacy || {},
       }
-    case types.SET_DISPLAYED:
+    case types.SET_DISPLAYED_PHARMACY:
       return {
         ...state,
         displayed: action.value,

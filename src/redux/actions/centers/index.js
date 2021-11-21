@@ -51,6 +51,7 @@ export const fetchCenterByName = (id) => async (dispatch) => {
 export const addCenter = (center) => async (dispatch) => {
   try {
     const newCenter = await api.addCenter(center);
+    console.log(newCenter);
     dispatch({
       type: types.ADD_CENTER,
       center: newCenter, //enjez ines w ghalet en plus center:newCenter,
