@@ -11,6 +11,7 @@ import updateInscri from "./updateInscri/updateInscri";
 import reportRdv from "./reportRdv/reportRdv";
 import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
+import ManageVolunteers from "./Admin/ManageVolunteers/ManageVolunteers";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
 import Chatbot from "./Chatbot"
 
@@ -31,6 +32,7 @@ class AppRouter extends React.Component {
             component={InscriptionInCenter}
           ></Route>
           <Route path="/ManageVaccines" component={ManageVaccine}></Route>
+          <Route path="/ManageVolunteers" component={ManageVolunteers}></Route>
 
           <Route
             path="/inscriptionPharmacie"
@@ -39,10 +41,7 @@ class AppRouter extends React.Component {
           <Route path="/updateInscri" component={updateInscri}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/reportRdv" component={reportRdv}></Route>
-          <Route
-            path="/inscriptionPharmacie"
-            component={inscriptionPharmacie}
-          ></Route>
+       
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>
