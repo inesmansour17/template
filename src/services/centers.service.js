@@ -3,8 +3,8 @@ import Axios from "axios";
 let baseUrl = "http://localhost:5000/api/centers";
 
 export const addCenter = async (center) => {
-  const result = await Axios.post(baseUrl + "/add", center)
-    /* .then((res) => {
+  const result = await Axios.post(baseUrl + "/add", center);
+  /* .then((res) => {
       if (res.status === 201) {
         console.log("sucess");
         console.log(res.data);
@@ -16,7 +16,8 @@ export const addCenter = async (center) => {
         console.log(error.response.data);
         console.log(error.response.status);
       }
-    }); */ 
+    }); */
+
   return result.data.newCenter;
 };
 
@@ -46,5 +47,5 @@ export const updateCenterVaccine = async (centerName, vaccinId, quantity) => {
     idVacc: vaccinId,
     amount: quantity,
   });
-  return result.data;
+  return result.data.center;
 };

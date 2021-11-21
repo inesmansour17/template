@@ -73,6 +73,7 @@ const centers = (state = initialState, action) => {
         }
         return center;
       });
+      console.log(updatedCenterVaccine);
       return { ...state, list: updatedCenterVaccine };
     default:
       return state;
