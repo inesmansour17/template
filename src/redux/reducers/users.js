@@ -26,22 +26,22 @@ const users = (state = initialState, action) => {
         ...state,
         list: [...state.list, action.user],
       };
-      case types.ADD_USER:
+    case types.ADD_USER:
       return {
         ...state,
         list: [...state.list, action.user],
       };
-      case types.UPDATE_USER:
+    case types.UPDATE_USER:
       return {
         ...state,
         list: [...state.list, action.user],
       };
-      case types.DELETE_USER:
+    case types.DELETE_USER:
       return {
         ...state,
         list: [...state.list, action.user],
       };
-      case types.GET_ALL_USER:
+    case types.GET_ALL_USER:
       return {
         ...state,
         list: [...state.list, action.user],
