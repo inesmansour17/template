@@ -18,7 +18,7 @@ export const addUser = (user) => async (dispatch) => {
     const newUser = await api.addUser(user);
     dispatch({
       type: types.ADD_USER,
-      user: newUser, 
+      user: newUser,
     });
   } catch (e) {
     console.log(e);
@@ -48,12 +48,11 @@ export const deleteUser = (id) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   await api.getAllUsers();
   dispatch({
-    type: types.GET_ALL_USER
-    
+    type: types.GET_ALL_USER,
+    //ne9s retour :)
   });
 };
 export const setDisplayed = (value) => ({
   type: types.SET_DISPLAYED_USER,
   value,
 });
-
