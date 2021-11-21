@@ -4,7 +4,7 @@ let baseUrl = "http://localhost:5000/api/centers";
 
 export const addCenter = async (center) => {
   const result = await Axios.post(baseUrl + "/add", center)
-    .then((res) => {
+    /* .then((res) => {
       if (res.status === 201) {
         console.log("sucess");
         console.log(res.data);
@@ -16,8 +16,8 @@ export const addCenter = async (center) => {
         console.log(error.response.data);
         console.log(error.response.status);
       }
-    });
-  return result.data.center;
+    }); */ 
+  return result.data.newCenter;
 };
 
 export const updateCenter = async (center) => {

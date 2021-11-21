@@ -55,8 +55,8 @@ function ManageVaccine() {
     dispatch(actions.setSelectedVaccine(vaccine));
     dispatch(actions.setDisplayUpdate(true));
   };
-  const handleDelete = (id) => {
-    dispatch(actions.deleteVaccine(id));
+  const handleDelete = (vaccine_type) => {
+    dispatch(actions.deleteVaccine(vaccine_type));
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -98,7 +98,7 @@ function ManageVaccine() {
                         </Button>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <IconButton onClick={() => handleDelete(vaccine.id)}>
+                        <IconButton onClick={() => handleDelete(vaccine.vaccine_type)}>
                           <DeleteIcon className="btnColorDelete" />
                         </IconButton>
                       </StyledTableCell>

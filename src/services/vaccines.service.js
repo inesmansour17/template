@@ -13,8 +13,8 @@ export const updateVaccine = async (vaccine) => {
   return result.data.updatedVaccine;
 };
 
-export const deleteVaccine = async (id) => {
-  const result = await Axios.delete(baseUrl + id);
+export const deleteVaccine = async (vaccine_type) => {
+  const result = await Axios.delete(baseUrl +'delete/' +vaccine_type);
   return result.data.vaccine;
 };
 
