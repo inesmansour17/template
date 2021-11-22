@@ -127,13 +127,13 @@ function ManageCenter() {
                       <StyledTableCell>
                         {center.center_capacity}
                       </StyledTableCell>
-                      <StyledTableCell> 
-                        { center.type_vaccine
+                      <StyledTableCell>
+                        {center.type_vaccine
                           ? center.type_vaccine.vaccine_type
                           : "Not assigned"}
                       </StyledTableCell>
-                      <StyledTableCell> 
-                        { center.type_vaccine
+                      <StyledTableCell>
+                        {center.type_vaccine
                           ? center.number_vaccine
                           : "Not assigned"}
                       </StyledTableCell>

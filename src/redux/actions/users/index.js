@@ -19,11 +19,31 @@ export const addUser = (user) => async (dispatch) => {
     console.log(newUser); //a testé demain 
     dispatch({
       type: types.ADD_USER,
-      user: newUser, 
+      user: newUser,
     });
   } catch (e) {
     console.log(e);
   }
+};
+
+export const updateUser = (user) => async (dispatch) => {
+  try {
+    const updatedUser = await api.updateUser(user);
+    dispatch({
+      type: types.UPDATE_USER,
+      user: updatedUser,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteUser = (id) => async (dispatch) => {
+  await api.deleteUser(id);
+  dispatch({
+    type: types.DELETE_USER,
+    user: id,
+  });
 };
 
 export const getAllUsers = () => async (dispatch) => {
@@ -31,7 +51,6 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch({
     type: types.GET_ALL_USER,
     user: list
-    
   });
 };
 
@@ -44,6 +63,7 @@ export const setDisplayed = (value) => ({
   type: types.SET_DISPLAYED_USER,
   value,
 });
+
 
 export const setDisplayUpdate = (value) => ({
   type: types.SET_DISPLAY_UPDATE_USER,
@@ -70,3 +90,4 @@ export const deleteUser = (id) => async (dispatch) => {
     user: id,
   });
 };
+

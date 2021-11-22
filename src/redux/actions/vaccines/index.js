@@ -34,6 +34,7 @@ export const getVaccineById = (id) => async (dispatch) => {
 export const addVaccine = (vaccine) => async (dispatch) => {
   try {
     const newVaccine = await api.addVaccine(vaccine);
+    console.log(newVaccine)
     dispatch({
       type: types.ADD_VACCINE,
       vaccine: newVaccine,
@@ -54,11 +55,11 @@ export const updateVaccine = (vaccine) => async (dispatch) => {
     console.log(e);
   }
 };
-export const deleteVaccine = (id) => async (dispatch) => {
-  await api.deleteVaccine(id);
+export const deleteVaccine = (vaccine_type) => async (dispatch) => {
+  await api.deleteVaccine(vaccine_type);
   dispatch({
     type: types.DELETE_VACCINE,
-    vaccine: id,
+    vaccine: vaccine_type,
   });
 };
 

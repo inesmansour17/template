@@ -41,10 +41,7 @@ class AppRouter extends React.Component {
           <Route path="/updateInscri" component={updateInscri}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/reportRdv" component={reportRdv}></Route>
-          <Route
-            path="/inscriptionPharmacie"
-            component={inscriptionPharmacie}
-          ></Route>
+       
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>

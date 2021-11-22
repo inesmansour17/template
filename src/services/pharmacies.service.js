@@ -8,7 +8,7 @@ export const addPharmacy = async (pharmacy) => {
     baseUrl + "/add",
     pharmacy
   )
-  return result.data
+  return result.data.newPharmacy
 }
 
 export const updatePharmacy = async (pharmacy) => {
