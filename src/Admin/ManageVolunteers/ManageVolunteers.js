@@ -16,6 +16,7 @@ import * as actions from "../../redux/actions/users";
 
 import SideBar from "../../SideBar/SideBar";
 import AddVolunteers from "./AddVolunteers/AddVolunteers";
+import UpdateVolunteers from "./UpdateVolunteers/UpdateVolunteer"
 const { Content } = Layout;
 
 const StyledTableCell = withStyles((theme) => ({
@@ -40,8 +41,18 @@ const StyledTableRow = withStyles((theme) => ({
 function ManageVolunteers() {
   const isAddVisible = useSelector((state) => state.users.displayed);
   const isUpdateVisible = useSelector((state) => state.users.displayUpdate);
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users.list[0]);
   const dispatch = useDispatch();
+
+  const handleUpdate = (user) => {
+     dispatch(actions.setSelectedUser(user));
+     dispatch(actions.setDisplayUpdate(true));
+
+  };
+  const handleDelete = (id) => {
+    dispatch(actions.deleteUser(id));
+  };
+
 
   useEffect(() => {
     try {
@@ -68,7 +79,8 @@ function ManageVolunteers() {
               Add new volunteers
             </Button>
             {isAddVisible && <AddVolunteers />}
-           
+            {isUpdateVisible && <UpdateVolunteers />}
+
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -78,30 +90,34 @@ function ManageVolunteers() {
                   <TableCell>Cin</TableCell>
                   <TableCell>Birthday</TableCell>
                   <TableCell>Role</TableCell>
+                  <TableCell>Center</TableCell>
                   
                   <TableCell>Update</TableCell>
                   <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
-              {users.loading && <div>Loading ... </div>}
+              {/* {users.loading && <div>Loading ... </div>} */}
               <TableBody>
-                {!users.loading &&
-                  users.list &&
-                  users.list.map((user, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell> {user.firstName}</StyledTableCell>
-                      <StyledTableCell> {user.lastName}</StyledTableCell>
-                      <StyledTableCell> {user.email}</StyledTableCell>
-                      <StyledTableCell> {user.cin}</StyledTableCell>
-                      <StyledTableCell> {user.birthday}</StyledTableCell>
-                      <StyledTableCell> {user.role}</StyledTableCell>
+                { users && users.length > 0 && 
+                // !users.loading &&
+                //   users.list && 
+                 
+                  users.map((user) => (               
+                       <StyledTableRow key={user?._id}>
+                      <StyledTableCell> {user?.firstname}</StyledTableCell>
+                      <StyledTableCell> {user?.lastname}</StyledTableCell>
+                      <StyledTableCell> {user?.email}</StyledTableCell>
+                      <StyledTableCell> {user?.cin}</StyledTableCell>
+                      <StyledTableCell> {user?.birthday}</StyledTableCell>
+                      <StyledTableCell> {user?.role}</StyledTableCell>
+                      <StyledTableCell>{user?.centers}</StyledTableCell>
                       <StyledTableCell>
-                        <Button >
+                        <Button onClick={() => handleUpdate(user)}>
                           Update{" "}
                         </Button>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <IconButton >
+                      <IconButton onClick={() => handleDelete(user?._id)}>
                           <DeleteIcon className="btnColorDelete" />
                         </IconButton>
                       </StyledTableCell>

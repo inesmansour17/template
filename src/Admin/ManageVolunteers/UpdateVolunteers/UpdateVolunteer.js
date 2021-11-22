@@ -1,34 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Form, Input, InputNumber,Select,DatePicker, AutoComplete} from "antd"; 
-import {fetchCenters} from "../../../redux/actions/centers";
-import * as actions from "../../../redux/actions/users";
+import React, { useState,useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"; 
 import gouvernorat from "../../../constants/gouvernorat";
 import villes from "../../../constants/villes";
-function AddVolunteers() {
-  const isModalVisible = useSelector((state) => state.users.displayed);
+import { Modal, Button, Form, Input, InputNumber,Select,DatePicker, AutoComplete} from "antd"; 
+import * as actions from "../../../redux/actions/users";
+import {fetchCenters} from "../../../redux/actions/centers";
+import moment from "moment";
+
+
+
+function UpdateVolunteers() {
+    
+    const isModalVisible = useSelector((state) => state.users.displayUpdate);
   const [cities, setCities] = useState([]);    
+  const [selectedCenter, setSelectedCenter] = useState([]);  
   const centers =  useSelector((state) => state.centers.list);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.selectedUser);
+  console.log('centers', centers)
+
    
   const changeGov = (gover) => { 
     const found = villes.find((ville) => ville.gov === gover).cities;
     setCities(found ? found : []);
   };
   const closeModal = () => { 
-    dispatch(actions.setDisplayed(false));
-  }; 
-  const handleSubmit = async (values) => {
+    dispatch(actions.setDisplayUpdate(false));
 
-    console.log('values', values)
-    const user = {
-      ...values,
-      user_type:values.user_type,
-      stock:values.stock,
-    };
-    dispatch(actions.addUser( {...user,role:"volunteer"}));
   };
-  const options = centers.map(opt => (
+  const onSelect = (e) => {
+    
+      console.log('item', e)
+    
+  };
+  useEffect(() => {
+    try {
+      dispatch(fetchCenters());
+    } catch (e) {
+      console.log("errroooor");
+    }
+  }, []);
+  
+   const options = centers.map(opt => (
     <Select.Option key={opt._id} value={opt.name} label={opt.name}>
       {opt.name}
     </Select.Option>
@@ -37,16 +50,22 @@ function AddVolunteers() {
  Show Plus
 </Select.Option>,
 ]);
-   useEffect(() => {
-    try {
-      dispatch(fetchCenters());
-    } catch (e) {
-      console.log("errroooor");
-    }
-  }, []);
+    const handleSubmit = async (values) => {
+
+        console.log('values', values)
+
+        const Updateduser = {
+            id: user._id,
+            stock: values.stock,
+            ...values
+          };
+          dispatch(actions.updateUser( {...Updateduser,role:"volunteer"}));
+          dispatch(actions.setDisplayUpdate(false));
+      };
+   
   return (
     <Modal
-      title="Add new volunteers"
+      title=  "Update volunteers"
       visible={isModalVisible}
       onCancel={closeModal}
       footer={null}
@@ -57,6 +76,16 @@ function AddVolunteers() {
         wrapperCol={{ span: 14 }}
         layout="horizontal"
         onFinish={handleSubmit} 
+        initialValues={{
+            ["cin"]: user?.cin *1,
+            ["firstname"]: user?.firstname,
+            ["lastname"]: user?.lastname,
+            ["email"]: user?.email,
+            ["birthday"]: moment(user?.birthday),
+            ["governorate"]: user?.governorate,
+            ["city"]: user?.city,
+
+          }}
       ><Form.Item
       label="cin:"
       name="cin"
@@ -147,7 +176,7 @@ function AddVolunteers() {
         >
           <Select >
             <Select.Option>--Choose City--</Select.Option>
-            {cities?.map((city, key) => {
+            {cities.map((city, key) => {
               return (
                 <Select.Option key={key} value={city}>
                   {city}
@@ -177,7 +206,7 @@ function AddVolunteers() {
           </Select> */}
             <AutoComplete
           dataSource={options}
-          //onSelect={(e) => onSelect(e)}
+          onSelect={(e) => onSelect(e)}
           placeholder="type center name"
           filterOption={(inputValue, option) =>
             option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -185,11 +214,12 @@ function AddVolunteers() {
         </Form.Item>
         
 
+        
 
-        <Button type="primary" htmlType="submit" shape="round"> Add volunteers </Button>
+        <Button type="primary" htmlType="submit" shape="round"> Update volunteers </Button>
       </Form>
     </Modal>
   );
 }
 
-export default AddVolunteers;
+export default UpdateVolunteers;
