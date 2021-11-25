@@ -7,13 +7,14 @@ import Admin from "./Admin/Admin";
 import ManageCenter from "./Admin/ManageCenter/ManageCenter";
 import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
-import updateInscri from "./updateInscri/updateInscri";
+import UpdateInscri from "./updateInscri/updateInscri";
 import reportRdv from "./reportRdv/reportRdv";
 import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
 import ManageVolunteers from "./Admin/ManageVolunteers/ManageVolunteers";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
-import Chatbot from "./Chatbot"
+import Chatbot from "./Chatbot";
+import CitoyenSpace from "./CitoyenSpace/CitoyenSpace";
 
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
@@ -38,10 +39,10 @@ class AppRouter extends React.Component {
             path="/inscriptionPharmacie"
             component={inscriptionPharmacie}
           ></Route>
-          <Route path="/updateInscri" component={updateInscri}></Route>
-          <Route path="/login" component={Login}></Route>
+          <Route path="/updateInscription" component={UpdateInscri}></Route>
+          <Route path="/citoyenSpace" component={CitoyenSpace}></Route>
+
           <Route path="/reportRdv" component={reportRdv}></Route>
-       
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>

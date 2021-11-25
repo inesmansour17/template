@@ -52,18 +52,18 @@ function Navbar() {
         <Menu.Item key="Contact">
           <a href="#Contact">Contactez-nous</a>
         </Menu.Item>
-        <Menu.Item key="Login">
-          <Link to="/login">Login</Link>
-        </Menu.Item>
-        <SubMenu key="EspaceCitoyen" title="Espace Citoyen">
-          <Menu.Item key="attestation">Imprimer attestation</Menu.Item>
+
+        <SubMenu key="Gestion d'inscription" title="Gestion d'inscription">
           <Menu.Item key="MAJ">
-            <Link to="/updateInscri">Mettre à jour inscription</Link>
+            <Link to="/updateInscription">Mettre à jour inscription</Link>
           </Menu.Item>
           <Menu.Item key="rdv">
             <Link to="/reportRdv">Report rendez-vous</Link>
           </Menu.Item>
         </SubMenu>
+        <Menu.Item key="Espace Citoyen">
+          <Link to="/citoyenSpace">Espace Citoyen</Link>
+        </Menu.Item>
 
         <Menu.Item key="translation">
           <button onClick={changeLanguage("en")}>en</button>
