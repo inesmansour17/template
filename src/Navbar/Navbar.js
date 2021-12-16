@@ -1,4 +1,4 @@
-import { Menu, Image } from "antd";
+import { Menu, Image, Button } from "antd";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -34,40 +34,51 @@ function Navbar() {
           <Link to="/Home">{t("Welcome")}</Link>
         </Menu.Item>
 
-        <SubMenu key="Inscription" title="S'inscrire">
+        <SubMenu key="Inscription" title={t("S'inscrire")}>
           <Menu.Item key="inscriC">
-            <Link to="/inscriptionInCenter">Inscription dans un centre</Link>
+            <Link to="/inscriptionInCenter">
+              {t("Inscription dans un centre")}
+            </Link>
           </Menu.Item>
           <Menu.Item key="inscriP">
             <Link to="/inscriptionPharmacie">
-              Inscription dans une pharmacie
+              {t("Inscription dans une pharmacie")}
             </Link>
           </Menu.Item>
         </SubMenu>
 
         <Menu.Item href="#Faq" target="#Faq" key="FAQ">
-          <a href="#Faq"> FAQ</a>
+          <a href="#Faq"> {t("FAQ")}</a>
         </Menu.Item>
 
         <Menu.Item key="Contact">
-          <a href="#Contact">Contactez-nous</a>
+          <a href="#Contact">{t("Contactez-nous")}</a>
         </Menu.Item>
 
-        <SubMenu key="Gestion d'inscription" title="Gestion d'inscription">
+        <SubMenu key="Gestion d'inscription" title={t("Gestion d'inscription")}>
           <Menu.Item key="MAJ">
-            <Link to="/updateInscription">Mettre à jour inscription</Link>
+            <Link to="/updateInscription">
+              {t("Mettre à jour inscription")}
+            </Link>
           </Menu.Item>
           <Menu.Item key="rdv">
-            <Link to="/reportRdv">Report rendez-vous</Link>
+            <Link to="/reportRdv">{t("Report rendez-vous")}</Link>
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="Espace Citoyen">
-          <Link to="/citoyenSpace">Espace Citoyen</Link>
+          <Link to="/citoyenSpace">{t("Espace Citoyen")}</Link>
         </Menu.Item>
 
         <Menu.Item key="translation">
-          <button onClick={changeLanguage("en")}>en</button>
-          <button onClick={changeLanguage("fr")}>fr</button>
+          <Button shape="circle" onClick={changeLanguage("fr")}>
+            fr
+          </Button>
+          <Button shape="circle" onClick={changeLanguage("en")}>
+            en
+          </Button>
+          <Button shape="circle" onClick={changeLanguage("ar")}>
+            ar
+          </Button>
         </Menu.Item>
       </Menu>
     </div>
