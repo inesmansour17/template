@@ -59,3 +59,8 @@ export const SET_DISPLAY_UPDATE_USER = "SET_DISPLAY_UPDATE_USER";
 //RDV actions type
 export const ADD_RDV = "ADD_RDV";
 export const UPDATE_RDV = "UPDATE_RDV";
+
+//ERROR
+export const SET_ERRORS = "SET_ERRORS"
+export const SET_ERRORS_HELPER = "SET_ERRORS_HELPER"
+export const SET_FLAG = "SET_FLAG"

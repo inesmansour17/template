@@ -1,12 +1,22 @@
-import React from "react";
-import { Layout, Progress } from "antd";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Layout, Progress, Statistic, Row, Col, Button} from "antd";  
 import SideBar from "../SideBar/SideBar";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-  import {data}from './data_test'
+import * as actions from "../redux/actions/centers";
+import {data} from './data_test'
 const { Content } = Layout;
 
 function Admin() {
+  const centers = useSelector((state) => state.centers.list)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      dispatch(actions.fetchCenters());
+    } catch (e) {
+      console.log("errroooor");
+    } 
+  }, []);
   return (
     <div>
       <Layout style={{ minHeight: "100vh" }}>
@@ -24,7 +34,7 @@ function Admin() {
         <BarChart
           width={1500}
           height={300}
-          data={data}
+          data={centers}
           margin={{
             top: 5,
             right: 30,
@@ -41,17 +51,24 @@ function Admin() {
           <Bar dataKey="number_vaccine" fill="#82ca9d" />
         </BarChart>
       {/* </ResponsiveContainer> */}
+        <br />
+            <Row gutter={16}>
+              <Col span={12}>
+                <Statistic title="Active Centers" value={centers.length} />
+              </Col>
+              <Col span={12}>
+                <Statistic title="Vaccinated users" value={112} />
+              </Col> 
+            </Row>
             </div>
 
             {/* <div
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360, marginTop:12 }}
             >
-
+            </div> */} 
             
-            </div> */}
- 
-          </Content>
+            </Content> 
         </Layout>{" "}
       </Layout>
     </div>
