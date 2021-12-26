@@ -55,3 +55,7 @@ export const DELETE_USER = "DELETE_USER";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const SET_DISPLAYED_USER = "SET_DISPLAYED_USER";
 export const SET_DISPLAY_UPDATE_USER = "SET_DISPLAY_UPDATE_USER";
+
+//RDV actions type
+export const ADD_RDV = "ADD_RDV";
+export const UPDATE_RDV = "UPDATE_RDV";

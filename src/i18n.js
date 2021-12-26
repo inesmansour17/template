@@ -2,7 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translationEN from "./locales/en/translationEN.json";
 import translationFR from "./locales/fr/translationFR.json";
-
+import translationAR from "./locales/ar/translationAR.json";
 i18n
 
   .use(initReactI18next)
@@ -15,9 +15,12 @@ i18n
       fr: {
         translation: translationFR,
       },
+      ar: {
+        translation: translationAR,
+      },
     },
     lng: "fr", // if you're using a language detector, do not define the lng option
-    fallbackLng: "en",
+    fallbackLng: ["en", "ar"],
     debug: true,
     keySeparator: false,
 

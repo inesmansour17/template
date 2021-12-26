@@ -1,5 +1,6 @@
-import React from 'react'
+import React from "react";
 import { Row, Col } from "antd";
+import { useTranslation } from "react-i18next";
 import {
   CheckCircleOutlined,
   HighlightOutlined,
@@ -14,13 +15,14 @@ const style = {
 };
 
 function Stat() {
+  const { t } = useTranslation();
   return (
     <div className="statStyle">
       <br />
-      <h2 className="titstyle">Le vaccin en Tunisie</h2>
+      <h2 className="titstyle">{t("Le vaccin en Tunisie")}</h2>
       <h1>
-        Plus De Statistiques
-        <br /> Sur Les Campagnes De Vaccination
+        {t("Plus De Statistiques")}
+        <br /> {t("Sur Les Campagnes De Vaccination")}
       </h1>
       <br />
       <Row gutter={{ xs: 8, sm: 8, md: 18, lg: 32 }}>
@@ -30,7 +32,7 @@ function Stat() {
             <br />
             <br />
             <h2>1234</h2>
-            <p>Inscrits</p>
+            <p>{t("Inscrits")}</p>
           </div>
         </Col>
         <Col className="gutter-row" span={8}>
@@ -39,7 +41,7 @@ function Stat() {
             <br />
             <br />
             <h2>1234?</h2>
-            <p>Vaccinés 1ère dose </p>
+            <p>{t("Vaccinés 1ère dose")} </p>
           </div>
         </Col>
 
@@ -49,7 +51,7 @@ function Stat() {
             <br />
             <br />
             <h2> 1234</h2>
-            <p>Vaccinés 2ére dose</p>{" "}
+            <p>{t("Vaccinés 2éme dose")}</p>{" "}
           </div>
         </Col>
       </Row>

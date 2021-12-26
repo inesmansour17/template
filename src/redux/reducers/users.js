@@ -26,22 +26,35 @@ const users = (state = initialState, action) => {
         ...state,
         list: [...state.list, action.user],
       };
-    case types.ADD_USER:
+      case types.SET_SELECTED_USER:
+        return {
+          ...state,
+          selectedUser: action.user || {},
+        };
+      case types.ADD_USER:
       return {
         ...state,
-        list: [...state.list, action.user],
+        list: [state.list[0].concat(action.user)],
       };
+    // update del (ines ..)
+    
     case types.UPDATE_USER:
-      return {
-        ...state,
-        list: [...state.list, action.user],
-      };
+      const updatedUsers = state.list[0].map((user) => {
+        if (user._id === action.user._id) {
+          return action.user;
+        }
+        return user;
+      });
+      return { ...state.list, list: [updatedUsers] };
+      
     case types.DELETE_USER:
-      return {
-        ...state,
-        list: [...state.list, action.user],
-      };
-    case types.GET_ALL_USER:
+      const newList = state.list[0].filter(
+        (user) => user._id !== action.user
+      );
+
+      return { ...state.list , list: [newList] };
+
+      case types.GET_ALL_USER:
       return {
         ...state,
         list: [...state.list, action.user],
