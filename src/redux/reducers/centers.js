@@ -68,8 +68,8 @@ const centers = (state = initialState, action) => {
 
     case types.ADD_VACCINE_TO_CENTER:
       const updatedCenterVaccine = state.list.map((center) => {
-        if (center.id === action.center._id) {
-          return action.center;
+        if (center._id === action.center._id) { 
+          return  {...action.center};
         }
         return center;
       });
