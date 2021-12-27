@@ -1,22 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/actions/auth";
 import Navbar from "../Navbar/Navbar";
 import { Form, Input, Button } from "antd";
+import { useHistory } from "react-router";
 import "./CitoyenSpace.css";
+import { connect } from "react-redux";
+const mapStateToProps = (state) => {
+  console.log(state);
+};
+// const mapStateToProps = (state) => {
+//   console.log(state);
+//   return {
+//     user: state,
+//   };
+// };
 
-function CitoyenSpace() {
-  // const auth = useSelector((state) => state.auth);
+function CitoyenSpace(props) {
   const dispatch = useDispatch();
+  const [cin, setCin] = useState("");
+  const [code, setCode] = useState("");
 
   const handleSubmit = async (values) => {
-    const loggedUser = {
+    const user = {
       cin: values.cin,
       code: values.pass,
     };
-    dispatch(actions.login(loggedUser));
-    console.log(loggedUser);
+    dispatch(actions.login(user));
+
+    console.log(props);
+    // props.history.push("/Profile");
   };
+
   return (
     <div>
       <Navbar />
@@ -39,11 +54,11 @@ function CitoyenSpace() {
             },
           ]}
         >
-          <Input />
+          <Input type="cin" onChange={(e) => setCin(e.target.value)} />
         </Form.Item>
 
         <Form.Item
-          name="pass"
+          name="code"
           label="Num Inscription:"
           rules={[
             {
@@ -51,14 +66,15 @@ function CitoyenSpace() {
             },
           ]}
         >
-          <Input />
+          <Input type="code" onChange={(e) => setCode(e.target.value)} />
         </Form.Item>
         <Button type="primary" className="bt" htmlType="submit" shape="round">
           Se connecter
         </Button>
       </Form>
+      {/* {!loggedUser} */}
     </div>
   );
 }
-
-export default CitoyenSpace;
+// export default connect(mapStateToProps, { loggedUser })(CitoyenSpace);
+export default connect(mapStateToProps, {})(CitoyenSpace);
