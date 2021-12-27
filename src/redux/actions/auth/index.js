@@ -1,25 +1,16 @@
 import * as types from "../../types";
 import * as api from "../../../services/auth.service";
 
-export const login = (loggedUser) => async (dispatch) => {
-  // try{
-  //     const user = await api.login(loggedUser);
-  //     dispatch({
-  //         type: types.FETCH_USER_REQUEST,
-  //         loggedUser: user
-  //     });
-  // }
-  // catch(e){}
-
+export const login = (user) => async (dispatch) => {
   dispatch({
     type: types.FETCH_USER_REQUEST,
   });
 
   try {
-    const user = await api.login(loggedUser);
+    const loggedUser = await api.login(user);
     dispatch({
       type: types.LOGIN_SUCCESS,
-      payload: user,
+      payload: loggedUser,
     });
   } catch (e) {
     dispatch({

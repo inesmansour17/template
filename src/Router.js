@@ -15,6 +15,7 @@ import ManageVolunteers from "./Admin/ManageVolunteers/ManageVolunteers";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
 import Chatbot from "./Chatbot";
 import CitoyenSpace from "./CitoyenSpace/CitoyenSpace";
+import Profile from "./Profile/Profile";
 
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
@@ -46,6 +47,7 @@ class AppRouter extends React.Component {
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>
+          <Route path="/Profile" component={Profile}></Route>
         </Switch>
       </Router>
     );
