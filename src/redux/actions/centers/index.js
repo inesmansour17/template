@@ -50,7 +50,7 @@ export const fetchCenterByName = (id) => async (dispatch) => {
   }catch(err){
     dispatch({
       type: types.SET_ERRORS,
-      payload: err.response.data.message
+      payload: err.response.data
     })
   }
 };
@@ -66,7 +66,7 @@ export const addCenter = (center) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.SET_ERRORS,
-      payload: err.response.data.message
+      payload: err.response.data
     })
   }
 };
@@ -81,7 +81,7 @@ export const updateCenter = (center) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.SET_ERRORS,
-      payload: err.response.data.message
+      payload: err.response.data
     })
   }
 };
@@ -95,7 +95,7 @@ export const deleteCenter = (name) => async (dispatch) => {
   }catch(err){
     dispatch({
       type: types.SET_ERRORS,
-      payload: err.response.data.message
+      payload: err.response.data
     })
   }
 };
@@ -111,7 +111,7 @@ export const addVaccineToCenter = (nameCenter, idVaccin, quantity) => async (
   }catch(err){
     dispatch({
       type: types.SET_ERRORS,
-      payload: err.response.data.message
+      payload: err.response.data
     })
   }
   //dispatch action ....

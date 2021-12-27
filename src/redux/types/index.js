@@ -62,5 +62,5 @@ export const UPDATE_RDV = "UPDATE_RDV";
 
 //ERROR
 export const SET_ERRORS = "SET_ERRORS"
-export const SET_ERRORS_HELPER = "SET_ERRORS_HELPER"
+export const CLEAR_ERRORS = "CLEAR_ERRORS"
 export const SET_FLAG = "SET_FLAG"
