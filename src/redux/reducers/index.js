@@ -4,7 +4,8 @@ import auth from "./auth";
 import pharmacies from "./pharmacies";
 import vaccines from "./vaccines";
 import users from "./users";
-import updateRDV from "./Rdv";
+import updateRDV from "./Rdv"; 
+import errorReducer from './errorReducer'
 
 const rootReducer = () => {
   return combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = () => {
     vaccines,
     auth,
     users,
-    updateRDV
+    updateRDV,
+    errorReducer
     
   });
 };

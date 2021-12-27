@@ -41,11 +41,18 @@ export const fetchCenters = () => async (dispatch) => {
 };
 
 export const fetchCenterByName = (id) => async (dispatch) => {
-  const center = await api.fetchCenterByName(id);
-  dispatch({
-    type: types.FETCH_CENTER_BY_ID,
-    center,
-  });
+  try {
+    const center = await api.fetchCenterByName(id);
+    dispatch({
+      type: types.FETCH_CENTER_BY_ID,
+      center,
+    });
+  }catch(err){
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data
+    })
+  }
 };
 
 export const addCenter = (center) => async (dispatch) => {
@@ -56,8 +63,11 @@ export const addCenter = (center) => async (dispatch) => {
       type: types.ADD_CENTER,
       center: newCenter, //enjez ines w ghalet en plus center:newCenter,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data
+    })
   }
 };
 
@@ -68,25 +78,41 @@ export const updateCenter = (center) => async (dispatch) => {
       type: types.UPDATE_CENTER,
       center: updatedCenter,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data
+    })
   }
 };
 export const deleteCenter = (name) => async (dispatch) => {
-  await api.deleteCenter(name);
-  dispatch({
-    type: types.DELETE_CENTER,
-    center: name,
-  });
+  try {
+    await api.deleteCenter(name);
+    dispatch({
+      type: types.DELETE_CENTER,
+      center: name,
+    });
+  }catch(err){
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data
+    })
+  }
 };
 
 export const addVaccineToCenter = (nameCenter, idVaccin, quantity) => async (
   dispatch
 ) => {
-  const center = await api.updateCenterVaccine(nameCenter, idVaccin, quantity); //await call api
+  try {const center = await api.updateCenterVaccine(nameCenter, idVaccin, quantity); //await call api
   dispatch({
     type: types.ADD_VACCINE_TO_CENTER,
     center: center,
   });
+  }catch(err){
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data
+    })
+  }
   //dispatch action ....
 };
