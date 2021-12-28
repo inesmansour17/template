@@ -57,6 +57,18 @@ export const getAllUsers = () => async (dispatch) => {
   });
 };
 
+export const getUserByCin = () => async (dispatch) => {
+  try {
+    const user = await api.getUserByCin();
+    dispatch({
+      type: types.GET_USER_BY_CIN,
+      user: user,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const setSelectedUser = (user) => ({
   type: types.SET_SELECTED_USER,
   user,

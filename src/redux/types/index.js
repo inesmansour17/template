@@ -5,6 +5,7 @@ export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
 export const REGISTER_USER = "REGISTER_USER";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const FETCH_LOGIN_REQUEST = "FETCH_LOGIN_REQUEST";
 //types centre
 export const SET_SELECTED_CENTER = "SET_SELECTED_CENTER";
 export const FETCH_CENTERS_REQUEST = "FETCH_CENTERS_REQUEST";
@@ -55,6 +56,7 @@ export const DELETE_USER = "DELETE_USER";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const SET_DISPLAYED_USER = "SET_DISPLAYED_USER";
 export const SET_DISPLAY_UPDATE_USER = "SET_DISPLAY_UPDATE_USER";
+export const GET_USER_BY_CIN = "GET_USER_BY_CIN";
 
 //RDV actions type
 export const ADD_RDV = "ADD_RDV";
