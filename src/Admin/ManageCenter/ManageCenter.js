@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from "react";
-import { Layout, Button ,Alert,notification} from "antd";
+import React, { useEffect, useState } from "react";
+import { Layout, Button, Alert, notification } from "antd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
   IconButton,
@@ -8,11 +8,11 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  withStyles, 
+  withStyles,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions/centers";
-import * as types from "../../redux/types"
+import * as types from "../../redux/types";
 import UpdateCenter from "./UpdateCenter/UpdateCenter";
 import SideBar from "../../SideBar/SideBar";
 import AddCenter from "./AddCenter/AddCenter";
@@ -58,14 +58,14 @@ function ManageCenter() {
   const centers = useSelector((state) => state.centers);
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errorReducer);
-  const [err,setError]= useState("")
-  const [code,setCode]= useState("")
+  const [err, setError] = useState("");
+  const [code, setCode] = useState("");
   useEffect(() => {
     if (error.message) {
-        setError(error.message);
-        setCode(error.code)
+      setError(error.message);
+      setCode(error.code);
     }
-}, [error])
+  }, [error]);
   useEffect(() => {
     try {
       dispatch(actions.fetchCenters());
@@ -88,19 +88,18 @@ function ManageCenter() {
   };
   const clearError = () => {
     dispatch({
-      type: types.CLEAR_ERRORS
+      type: types.CLEAR_ERRORS,
     });
     setError("");
-    setCode("")
-  }
-  const popUp = type =>{
-     
-      notification[type]({
-        message: code,
-        description:err,
-        onClose: clearError
-      }); 
-  }
+    setCode("");
+  };
+  const popUp = (type) => {
+    notification[type]({
+      message: code,
+      description: err,
+      onClose: clearError,
+    });
+  };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <SideBar />
@@ -116,7 +115,7 @@ function ManageCenter() {
             >
               Add new center
             </Button>
-            {err && popUp('error')}
+            {err && popUp("error")}
             {isAddVisible && <AddCenter />}
             {isUpdateVisible && <UpdateCenter />}
             {isUpdateVacVisible && <AssignVaccine />}

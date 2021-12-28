@@ -16,9 +16,10 @@ export const fetchVaccines = () => async (dispatch) => {
       type: types.FETCH_VACCINES_SUCCESS,
       list: await api.fetchVaccines(),
     });
-  } catch (e) {
+  } catch (err) {
     dispatch({
-      type: types.FETCH_VACCINES_FAILURE,
+      type: types.SET_ERRORS,
+      payload: err.response.data,
     });
   }
 };
@@ -34,13 +35,16 @@ export const getVaccineById = (id) => async (dispatch) => {
 export const addVaccine = (vaccine) => async (dispatch) => {
   try {
     const newVaccine = await api.addVaccine(vaccine);
-    console.log(newVaccine)
+    console.log(newVaccine);
     dispatch({
       type: types.ADD_VACCINE,
       vaccine: newVaccine,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data,
+    });
   }
 };
 
@@ -51,8 +55,11 @@ export const updateVaccine = (vaccine) => async (dispatch) => {
       type: types.UPDATE_VACCINE,
       vaccine: updatedVaccine,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data,
+    });
   }
 };
 export const deleteVaccine = (vaccine_type) => async (dispatch) => {

@@ -8,8 +8,11 @@ export const registerCenter = (user) => async (dispatch) => {
       type: types.REGISTER_CENTER,
       user: newUser,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    dispatch({
+      type: types.SET_ERRORS,
+      payload: err.response.data,
+    });
   }
 };
 

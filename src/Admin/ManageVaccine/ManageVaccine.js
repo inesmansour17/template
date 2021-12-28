@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Layout, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Layout, Button, notification } from "antd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
   IconButton,
@@ -11,7 +11,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-
+import * as types from "../../redux/types";
 import * as actions from "../../redux/actions/vaccines";
 import UpdateVaccine from "./UpdateVaccine/UpdateVaccine";
 import SideBar from "../../SideBar/SideBar";
@@ -42,7 +42,15 @@ function ManageVaccine() {
   const isUpdateVisible = useSelector((state) => state.vaccines.displayUpdate);
   const vaccines = useSelector((state) => state.vaccines);
   const dispatch = useDispatch();
-
+  const error = useSelector((state) => state.errorReducer);
+  const [err, setError] = useState("");
+  const [code, setCode] = useState("");
+  useEffect(() => {
+    if (error.message) {
+      setError(error.message);
+      setCode(error.code);
+    }
+  }, [error]);
   useEffect(() => {
     try {
       dispatch(actions.fetchVaccines());
@@ -58,6 +66,22 @@ function ManageVaccine() {
   const handleDelete = (vaccine_type) => {
     dispatch(actions.deleteVaccine(vaccine_type));
   };
+
+  const clearError = () => {
+    dispatch({
+      type: types.CLEAR_ERRORS,
+    });
+    setError("");
+    setCode("");
+  };
+  const popUp = (type) => {
+    notification[type]({
+      message: code,
+      description: err,
+      onClose: clearError,
+    });
+  };
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <SideBar />
@@ -73,6 +97,7 @@ function ManageVaccine() {
             >
               Add new vaccine
             </Button>
+            {err && popUp("error")}
             {isAddVisible && <AddVaccine />}
             {isUpdateVisible && <UpdateVaccine />}
             <Table aria-label="simple table">
@@ -98,7 +123,9 @@ function ManageVaccine() {
                         </Button>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <IconButton onClick={() => handleDelete(vaccine.vaccine_type)}>
+                        <IconButton
+                          onClick={() => handleDelete(vaccine.vaccine_type)}
+                        >
                           <DeleteIcon className="btnColorDelete" />
                         </IconButton>
                       </StyledTableCell>

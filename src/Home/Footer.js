@@ -1,17 +1,17 @@
 import React from "react";
 import "./Footer.css";
 import { useTranslation } from "react-i18next";
-import i18n from "../i18n";
+
 const footerS = {
   background: "rgb(248, 248, 248)",
   margin: "20px",
   pading: "20px",
 };
-const changeLanguage = (ln) => {
-  return () => {
-    i18n.changeLanguage(ln);
-  };
-};
+// const changeLanguage = (ln) => {
+//   return () => {
+//     i18n.changeLanguage(ln);
+//   };
+// };
 function Footer() {
   const { t } = useTranslation();
   return (

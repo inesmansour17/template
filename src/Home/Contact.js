@@ -4,18 +4,12 @@ import "./Contact.css";
 import { PhoneOutlined, IeOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import i18n from "../i18n";
-
 const style = {
   background: "white",
   padding: "6px",
   margin: "6px",
 };
-const changeLanguage = (ln) => {
-  return () => {
-    i18n.changeLanguage(ln);
-  };
-};
+
 function Contact() {
   const { t } = useTranslation();
   return (

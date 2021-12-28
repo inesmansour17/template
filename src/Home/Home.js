@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Carousel, Image } from "antd";
 
 import Faq from "./Faq";
@@ -8,8 +8,8 @@ import Footer from "./Footer";
 import Navbar from "../Navbar/Navbar";
 import tal from "../img/box-img2.jpg";
 import tal3 from "../img/tal3.jpg";
-import index from "./index";
-import Chatbot from '../Chatbot';
+
+import Chatbot from "../Chatbot";
 
 const contentStyle = {
   height: "650px",
@@ -42,7 +42,6 @@ function Home() {
       <Chatbot />
       <br />
       <Footer />
-      
     </div>
   );
 }
