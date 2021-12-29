@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../redux/actions/auth";
 import Navbar from "../Navbar/Navbar";
@@ -54,7 +54,8 @@ function CitoyenSpace(props) {
             },
           ]}
         >
-          <Input type="cin" onChange={(e) => setCin(e.target.value)} />
+          <Input type="cin"// onChange={(e) => setCin(e.target.value)} 
+          />
         </Form.Item>
 
         <Form.Item
@@ -66,7 +67,8 @@ function CitoyenSpace(props) {
             },
           ]}
         >
-          <Input type="code" onChange={(e) => setCode(e.target.value)} />
+          <Input type="code" //onChange={(e) => setCode(e.target.value)} 
+          />
         </Form.Item>
         <Button type="primary" className="bt" htmlType="submit" shape="round">
           Se connecter
