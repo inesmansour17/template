@@ -61,7 +61,6 @@
       {
         "files": ["**/*.js?(x)"],
         "rules": {
-          "max-len": "warn"
         }
       }
     ]
