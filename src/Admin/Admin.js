@@ -12,7 +12,6 @@ import {
   Legend,
 } from "recharts";
 import * as actions from "../redux/actions/centers";
-import { data } from "./data_test";
 const { Content } = Layout;
 
 function Admin() {
@@ -24,7 +23,7 @@ function Admin() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, []);
+  }, );
   return (
     centers.list && centers.list.length >0 &&
     <div>
