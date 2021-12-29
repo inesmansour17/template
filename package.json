@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "homepage": "https://inesmansour17.github.io/template",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "react-scripts": "^3.4.4",
     "@ant-design/icons": "^4.7.0",
