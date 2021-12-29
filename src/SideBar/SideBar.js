@@ -46,9 +46,12 @@ function SideBar() {
               Manage Volunteers
             </Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<DesktopOutlined />}>
+          <Menu.Item key="6" icon={<DesktopOutlined />}>
+          <Link exact to="/ManageOpenDay">
             Open Days
+            </Link>
           </Menu.Item>
+          
         </Menu>
       </Sider>
     </div>

@@ -329,6 +329,6 @@ class Chatbot extends Component {
 }
 
 export default Chatbot;
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Chatbot />, rootElement);
+//removing for testing
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<Chatbot />, rootElement);
