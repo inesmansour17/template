@@ -6,6 +6,7 @@ import vaccines from "./vaccines";
 import users from "./users";
 import updateRDV from "./Rdv"; 
 import errorReducer from './errorReducer'
+import openDays from "./openDay"
 
 const rootReducer = () => {
   return combineReducers({
@@ -15,7 +16,9 @@ const rootReducer = () => {
     auth,
     users,
     updateRDV,
-    errorReducer
+    errorReducer,
+    openDays
+
     
   });
 };
