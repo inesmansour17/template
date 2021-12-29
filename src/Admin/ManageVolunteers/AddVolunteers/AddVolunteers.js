@@ -43,7 +43,7 @@ function AddVolunteers() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, []);
+  }, [dispatch]);
   return (
     <Modal
       title="Add new volunteers"

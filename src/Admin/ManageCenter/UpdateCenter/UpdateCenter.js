@@ -49,10 +49,10 @@ function UpdateCenter() {
         layout="horizontal"
         onFinish={handleSubmit} 
         initialValues={{
-          ["name"]: center.name,
-          ["governorate"]: center.governorate,
-          ["city"]: center.city,
-          ["capacity"]: center.center_capacity,
+          "name": center.name,
+          "governorate": center.governorate,
+          "city": center.city,
+          "capacity": center.center_capacity,
         }}
       >
         <Form.Item

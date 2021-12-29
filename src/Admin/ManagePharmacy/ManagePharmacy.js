@@ -42,9 +42,9 @@ function ManagePharmacy() {
     } catch (e) {
       console.log('errroooor')
     }  
-    console.log('pharmacy state : ', pharmacies)
+    //console.log('pharmacy state : ', pharmacies)
     
-  }, [])
+  }, [dispatch])
   const handleUpdate = (pharmacy) =>{
     dispatch(actions.setSelectedPharmacy(pharmacy)) 
     dispatch(actions.setDisplayUpdate(true)) 

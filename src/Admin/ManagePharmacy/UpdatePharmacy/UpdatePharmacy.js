@@ -45,10 +45,10 @@ function UpdatePharmacy() {
           layout="horizontal"
           onFinish={handleSubmit} 
         initialValues={{
-          ["name"]: pharmacy.name,
-          ["governorate"]: pharmacy.governorate,
-          ["city"]: pharmacy.city,
-          ["capacity"]: pharmacy.pharmacy_capacity,
+          "name": pharmacy.name,
+          "governorate": pharmacy.governorate,
+          "city": pharmacy.city,
+          "capacity": pharmacy.pharmacy_capacity,
         }}
         >
           <Form.Item

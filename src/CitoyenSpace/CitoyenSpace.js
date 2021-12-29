@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../redux/actions/auth";
 import Navbar from "../Navbar/Navbar";
 import { Form, Input, Button } from "antd";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 import "./CitoyenSpace.css";
 import { connect } from "react-redux";
 const mapStateToProps = (state) => {
@@ -18,8 +18,8 @@ const mapStateToProps = (state) => {
 
 function CitoyenSpace(props) {
   const dispatch = useDispatch();
-  const [cin, setCin] = useState("");
-  const [code, setCode] = useState("");
+  // const [cin, setCin] = useState("");
+  // const [code, setCode] = useState("");
 
   const handleSubmit = async (values) => {
     const user = {

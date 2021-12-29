@@ -19,7 +19,6 @@ import SideBar from "../../SideBar/SideBar";
 import AddVolunteers from "./AddVolunteers/AddVolunteers";
 import UpdateVolunteers from "./UpdateVolunteers/UpdateVolunteer"
 const { Content } = Layout;
-let value = 0;
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",
@@ -61,8 +60,7 @@ function ManageVolunteers() {
     } catch (e) {
       console.log("errroooor");
     }
-    console.log("user state : ", users);
-  }, []);
+  }, [dispatch]);
   
   return (
     <Layout style={{ minHeight: "100vh" }}>

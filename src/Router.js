@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route,Navigate  } from "react-router-dom";
+import { Router, Switch, Route  } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import Home from "./Home/Home";
@@ -10,7 +10,7 @@ import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import UpdateInscri from "./updateInscri/updateInscri";
 import reportRdv from "./reportRdv/reportRdv";
-import Login from "./login";
+//import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
 import ManageVolunteers from "./Admin/ManageVolunteers/ManageVolunteers";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";

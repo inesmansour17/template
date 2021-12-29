@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Button, Alert, notification } from "antd";
+import { Layout, Button, notification } from "antd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
   IconButton,
@@ -19,17 +19,17 @@ import AddCenter from "./AddCenter/AddCenter";
 import AssignVaccine from "./AssignVaccine/AssignVaccine";
 
 const { Content } = Layout;
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   bgcolor: "background.paper",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+// };
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",
@@ -72,8 +72,8 @@ function ManageCenter() {
     } catch (e) {
       console.log("errroooor");
     }
-    console.log("center state : ", centers);
-  }, []);
+    //console.log("center state : ", centers);
+  }, [dispatch]);
   const handleUpdate = (center) => {
     dispatch(actions.setSelectedCenter(center));
     dispatch(actions.setDisplayUpdate(true));

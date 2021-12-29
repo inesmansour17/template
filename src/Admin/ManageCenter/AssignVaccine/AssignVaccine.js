@@ -19,18 +19,18 @@ function AssignVaccine() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, []);
-  const changeVac = (vacc) => {
-    console.log(vacc);
-    dispatch(vaccActions.setSelectedVaccine(vacc));
-  };
+  }, [dispatch]);
+  // const changeVac = (vacc) => {
+  //   console.log(vacc);
+  //   dispatch(vaccActions.setSelectedVaccine(vacc));
+  // };
   const handleSubmit = async (values) => {
-    const Updatedcenter = {
-      id: center.id,
-      name: values.name,
-      type_vaccine: values.type_vaccine,
-      number_vaccine: values.number_vaccine,
-    };
+    // const Updatedcenter = {
+    //   id: center.id,
+    //   name: values.name,
+    //   type_vaccine: values.type_vaccine,
+    //   number_vaccine: values.number_vaccine,
+    // };
     dispatch(
       actions.addVaccineToCenter(
         values.name,
@@ -54,9 +54,9 @@ function AssignVaccine() {
         layout="horizontal"
         onFinish={handleSubmit}
         initialValues={{
-          ["name"]: center.name,
-          ["type_vaccine"]: center.type_vaccine?.vaccine_type,
-          ["number_vaccine"]: center.number_vaccine,
+          "name": center.name,
+          "type_vaccine": center.type_vaccine?.vaccine_type,
+          "number_vaccine": center.number_vaccine,
         }}
       >
         <Form.Item
