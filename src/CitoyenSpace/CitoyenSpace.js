@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/actions/auth";
 import Navbar from "../Navbar/Navbar";
 import { Form, Input, Button } from "antd";
-import { useHistory } from "react-router";
+
 import "./CitoyenSpace.css";
 import { connect } from "react-redux";
+
 const mapStateToProps = (state) => {
   console.log(state);
 };
