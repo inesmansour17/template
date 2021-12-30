@@ -57,9 +57,9 @@ export const getAllUsers = () => async (dispatch) => {
   });
 };
 
-export const getUserByCin = () => async (dispatch) => {
+export const getUserByCin = (cin) => async (dispatch) => {
   try {
-    const user = await api.getUserByCin();
+    const user = await api.getUserByCin(cin);
     dispatch({
       type: types.GET_USER_BY_CIN,
       user: user,

@@ -38,7 +38,7 @@ export const getAllUsers = async () => {
   return result.data.users;
 };
 
-export const getUserByCin = async () => {
-  const result = await Axios.get(userUrl + "/cin");
+export const getUserByCin = async (cin) => {
+  const result = await Axios.get(userUrl + "/" + cin);
   return result.data.user;
 };

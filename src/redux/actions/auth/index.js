@@ -13,9 +13,27 @@ export const login = (user) => async (dispatch) => {
       payload: loggedUser,
     });
   } catch (e) {
+    console.log(e);
     dispatch({
       type: types.LOGIN_FAIL,
-      payload: {},
+      payload: {
+        loggedIn: false,
+        message: e.response.data.message,
+      },
     });
   }
+};
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: types.FETCH_USER_REQUEST,
+  });
+
+  localStorage.removeItem("token");
+  dispatch({
+    type: types.LOGIN_FAIL,
+    payload: {
+      token: null,
+      user: null,
+    },
+  });
 };

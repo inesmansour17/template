@@ -18,9 +18,6 @@ import Chatbot from "./Chatbot";
 import CitoyenSpace from "./CitoyenSpace/CitoyenSpace";
 import Profile from "./Profile/Profile";
 
-
-
-
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
   render() {
@@ -51,7 +48,16 @@ class AppRouter extends React.Component {
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>
-          <Route path="/Profile" component={Profile}></Route>
+          <Route
+            path="/Profile"
+            render={(props) =>
+              localStorage.getItem("token") ? (
+                <Profile {...props}></Profile>
+              ) : (
+                <Redirect to="/Home" />
+              )
+            }
+          ></Route>
         </Switch>
       </Router>
     );

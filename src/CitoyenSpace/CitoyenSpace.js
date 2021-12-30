@@ -1,36 +1,38 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/actions/auth";
 import Navbar from "../Navbar/Navbar";
 import { Form, Input, Button } from "antd";
-//import { useHistory } from "react-router";
+
 import "./CitoyenSpace.css";
 import { connect } from "react-redux";
-const mapStateToProps = (state) => {
-  console.log(state);
-};
-// const mapStateToProps = (state) => {
-//   console.log(state);
-//   return {
-//     user: state,
-//   };
-// };
+import { useHistory } from "react-router-dom";
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  errorMessage: state.auth.errorMessage,
+});
 
 function CitoyenSpace(props) {
   const dispatch = useDispatch();
-  // const [cin, setCin] = useState("");
-  // const [code, setCode] = useState("");
-
-  const handleSubmit = async (values) => {
+  const [cin, setCin] = useState("");
+  const [code, setCode] = useState("");
+  const history = useHistory();
+  const handleSubmit = (values) => {
     const user = {
       cin: values.cin,
-      code: values.pass,
+      code: values.code,
     };
     dispatch(actions.login(user));
-
-    console.log(props);
-    // props.history.push("/Profile");
+    console.log(props.isLoggedIn);
+    if (props.isLoggedIn) {
+      history.push("/Profile");
+    }
   };
+  useEffect(() => {
+    if (props.isLoggedIn) {
+      history.push("/Profile");
+    }
+  });
 
   return (
     <div>
@@ -60,7 +62,7 @@ function CitoyenSpace(props) {
 
         <Form.Item
           name="code"
-          label="Num Inscription:"
+          label="Code:"
           rules={[
             {
               required: true,
@@ -73,10 +75,10 @@ function CitoyenSpace(props) {
         <Button type="primary" className="bt" htmlType="submit" shape="round">
           Se connecter
         </Button>
+        <p className="para2">{props.errorMessage}</p>
       </Form>
-      {/* {!loggedUser} */}
     </div>
   );
 }
-// export default connect(mapStateToProps, { loggedUser })(CitoyenSpace);
-export default connect(mapStateToProps, {})(CitoyenSpace);
+//export default connect(mapStateToProps, { loggedUser })(CitoyenSpace);
+export default connect(mapStateToProps)(CitoyenSpace);

@@ -1,6 +1,8 @@
 import * as types from "../types";
-
-const loggedUser = JSON.parse(localStorage.getItem("token"));
+import jwt_decode from "jwt-decode";
+const loggedUser = localStorage.getItem("token")
+  ? jwt_decode(localStorage.getItem("token"))
+  : null;
 
 const initialState = loggedUser
   ? { isLoggedIn: true, loggedUser }
@@ -13,13 +15,14 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        loggedUser: payload.loggedUser,
+        loggedUser: payload.user,
       };
     case types.LOGIN_FAIL:
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggedIn: payload.loggedIn,
         loggedUser: null,
+        errorMessage: payload.message,
       };
 
     default:
