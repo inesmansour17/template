@@ -2,10 +2,12 @@ import { Menu, Image, Button } from "antd";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import * as actions from "../redux/actions/auth";
 import logo from "../img/logoTun.png";
 import i18n from "../i18n";
 import React from "react";
-
+import { useDispatch, connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 const { SubMenu } = Menu;
 const centerStyle = {
   justifyContent: "center",
@@ -19,10 +21,18 @@ const changeLanguage = (ln) => {
     i18n.changeLanguage(ln);
   };
 };
+const mapStateToProps = (state) => ({
+  connectedUser: state.auth.loggedUser,
+});
 
-function Navbar() {
+function Navbar(props) {
   const { t } = useTranslation();
-
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const logout = (e) => {
+    dispatch(actions.logout());
+    history.push("/Home");
+  };
   return (
     <div className="header">
       <Menu mode="horizontal" style={centerStyle}>
@@ -65,9 +75,15 @@ function Navbar() {
             <Link to="/reportRdv">{t("Report rendez-vous")}</Link>
           </Menu.Item>
         </SubMenu>
-        <Menu.Item key="Espace Citoyen">
-          <Link to="/citoyenSpace">{t("Espace Citoyen")}</Link>
-        </Menu.Item>
+        {props.connectedUser != null ? (
+          <Menu.Item key="logout" onClick={logout}>
+            Logout
+          </Menu.Item>
+        ) : (
+          <Menu.Item key="Espace Citoyen">
+            <Link to="/citoyenSpace">{t("Espace Citoyen")}</Link>
+          </Menu.Item>
+        )}
 
         <Menu.Item key="translation">
           <Button shape="circle" onClick={changeLanguage("fr")}>
@@ -84,4 +100,4 @@ function Navbar() {
     </div>
   );
 }
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);
