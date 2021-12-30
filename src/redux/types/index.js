@@ -66,3 +66,13 @@ export const UPDATE_RDV = "UPDATE_RDV";
 export const SET_ERRORS = "SET_ERRORS"
 export const CLEAR_ERRORS = "CLEAR_ERRORS"
 export const SET_FLAG = "SET_FLAG"
+
+
+
+//jounées porte ouverte
+export const ADD_OPEN_DAY = "ADD_OPEN_DAY";
+export const SET_SELECTED_OPEN_DAY = "SET_SELECTED_OPEN_DAY";
+export const SET_DISPLAYED_OPEN_DAY = "SET_DISPLAYED_OPEN_DAY";
+export const GET_ALL_OPEN_DAYS = "GET_ALL_OPEN_DAYS";
+export const SET_DISPLAY_UPDATE_OPEN_DAY = "SET_DISPLAY_UPDATE_OPEN_DAY";
+export const UPDATE_OPEN_DAY = "UPDATE_OPEN_DAY"; // we need it ?

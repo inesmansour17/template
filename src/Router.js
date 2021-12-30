@@ -1,10 +1,11 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route,Navigate  } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import Home from "./Home/Home";
 import Admin from "./Admin/Admin";
 import ManageCenter from "./Admin/ManageCenter/ManageCenter";
+import ManageOpenDay from "./Admin/ManageOpenDay/ManageOpenDay";
 import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import UpdateInscri from "./updateInscri/updateInscri";
@@ -17,6 +18,9 @@ import Chatbot from "./Chatbot";
 import CitoyenSpace from "./CitoyenSpace/CitoyenSpace";
 import Profile from "./Profile/Profile";
 
+
+
+
 export let history = createBrowserHistory({ basename: "" });
 class AppRouter extends React.Component {
   render() {
@@ -28,7 +32,7 @@ class AppRouter extends React.Component {
 
           <Route path="/ManageCenter" component={ManageCenter}></Route>
           <Route path="/ManagePharmacy" component={ManagePharmacy}></Route>
-
+          <Route path="/ManageOpenDay" component={ManageOpenDay}></Route>
           <Route
             path="/inscriptionInCenter"
             component={InscriptionInCenter}

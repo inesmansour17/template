@@ -11,6 +11,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 import * as actions from "../../redux/actions/users";
 
@@ -18,7 +19,7 @@ import SideBar from "../../SideBar/SideBar";
 import AddVolunteers from "./AddVolunteers/AddVolunteers";
 import UpdateVolunteers from "./UpdateVolunteers/UpdateVolunteer"
 const { Content } = Layout;
-
+let value = 0;
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",
@@ -102,13 +103,15 @@ function ManageVolunteers() {
                 // !users.loading &&
                 //   users.list && 
                  
-                  users.map((user) => (               
+                  users.map((user) => (  
+
+                               
                        <StyledTableRow key={user?._id}>
                       <StyledTableCell> {user?.firstname}</StyledTableCell>
                       <StyledTableCell> {user?.lastname}</StyledTableCell>
                       <StyledTableCell> {user?.email}</StyledTableCell>
                       <StyledTableCell> {user?.cin}</StyledTableCell>
-                      <StyledTableCell> {user?.birthday}</StyledTableCell>
+                      <StyledTableCell> {user?.birthday ? moment(user?.birthday).format("DD-MM-YYYY") : ''}</StyledTableCell>
                       <StyledTableCell> {user?.role}</StyledTableCell>
                       <StyledTableCell>{user?.centers}</StyledTableCell>
                       <StyledTableCell>
@@ -123,6 +126,16 @@ function ManageVolunteers() {
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
+
+                  {/* {users && (  
+users.map((user) => (  
+   
+    value = moment(user.birthday).format("DD-MM-YYYY"),
+console.log('iness',moment().diff(moment(value, "DD-MM-YYYY"), 'years'))
+                         
+))
+
+                  )} */}
               </TableBody>
             </Table>
           </div>
