@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import * as actions from "../redux/actions/auth";
-import logo from "../img/logoTun.png";
+import logo from "../img/logoTun.webp";
 import i18n from "../i18n";
 import React from "react";
 import { useDispatch, connect } from "react-redux";
