@@ -7,7 +7,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
-import logo from "../img/logoTun.png";
+import logo from "../img/logoTun.webp";
 const mapStateToProps = (state) => ({
   connectedUser: state.auth.loggedUser,
   selectedUser: state.users.selectedUser,
