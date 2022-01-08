@@ -57,8 +57,7 @@ function ManageVaccine() {
     } catch (e) {
       console.log("errroooor");
     }
-    //console.log("vaccine state : ", vaccines);
-  }, [dispatch]);
+  }, []);
   const handleUpdate = (vaccine) => {
     dispatch(actions.setSelectedVaccine(vaccine));
     dispatch(actions.setDisplayUpdate(true));

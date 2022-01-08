@@ -18,8 +18,9 @@ export const fetchVaccines = () => async (dispatch) => {
     });
   } catch (err) {
     dispatch({
-      type: types.SET_ERRORS,
-      payload: err.response.data,
+     // type: types.FETCH_VACCINES_FAILURE, // add this line and remove the other two if error back 
+      type: types.SET_ERRORS, 
+      payload: err.response?.data, 
     });
   }
 };
@@ -35,7 +36,6 @@ export const getVaccineById = (id) => async (dispatch) => {
 export const addVaccine = (vaccine) => async (dispatch) => {
   try {
     const newVaccine = await api.addVaccine(vaccine);
-    console.log(newVaccine);
     dispatch({
       type: types.ADD_VACCINE,
       vaccine: newVaccine,

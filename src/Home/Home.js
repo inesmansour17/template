@@ -6,8 +6,8 @@ import Stat from "./Stat";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Navbar from "../Navbar/Navbar";
-import tal from "../img/box-img2.webp";
-import tal3 from "../img/tal3.webp";
+import tal from "../img/box-img2.jpg";
+import tal3 from "../img/tal3.jpg";
 
 import Chatbot from "../Chatbot";
 

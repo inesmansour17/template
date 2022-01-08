@@ -21,17 +21,17 @@ import moment from 'moment';
 
 
 const { Content } = Layout;
-// const style = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   // width: 400,
-//   bgcolor: "background.paper",
-//   border: "2px solid #000",
-//   boxShadow: 24,
-//   p: 4,
-// };
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#DDD",
@@ -69,7 +69,7 @@ function ManageOpenDay() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, [dispatch]);
+  }, []);
   const handleUpdate = (openday) => {
    dispatch(actions.setSelectedOpenDay(openday));
    dispatch(actions.setDisplayUpdate(true));

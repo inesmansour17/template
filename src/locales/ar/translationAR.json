@@ -49,5 +49,24 @@
   "1 à 2 grand (s) centre(s) par gouvernorat ouvert toute la semaine Et un centre par délégation à identifier par direction régionale de la santé ouvert le weekend": "مركز واحد (أو إثنين) كبير لكل الولاية مفتوحة طوال الأسبوع ومركز واحد لكل معتمدية يفتح في عطلات نهاية الأسبوع.",
   "Que faire en cas de problème lors de l'inscription?": "ماذا أفعل إذا واجهت مشكلة أثناء التسجيل؟",
   "Un numéro vert gratuit a été mis en place pour accompagner les citoyens tout au long de la campagne de vaccination.": "تم إنشاء رقم مجاني للإستفسار طوال حملة التلقيح.",
-  "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h": "الرقم المجاني: 80102021، مفتوح من الاثنين إلى الجمعة من منتصف الليل حتى الساعة 5 مساءً"
+  "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h": "الرقم المجاني: 80102021، مفتوح من الاثنين إلى الجمعة من منتصف الليل حتى الساعة 5 مساءً",
+  "CIN": "بطاقة التعريف ",
+  "Nom": "اللقب",
+  "Prénom": "الاسم ",
+  "Email": "البريد الإلكتروني",
+  "Gouvernorat": "الولاية",
+  "Ville": "المعتمدية",
+  "Age": "العمر",
+  "Veuillez remplir ces champs en langue française": "الرجاء إعتماد اللغة الفرنسية عند إدخال البيانات",
+
+  "Mettre à jour": "تحديث",
+  "Mettez à jour votre inscription à EVAX": "تحديث التسجيل الخاص بك على الموقع",
+
+  "Reportez votre rendez-vous": "قم بتأجيل موعدك",
+  "Num d'inscription": "رقم التسجيل",
+  "Nouvelle date": "موعد جديد",
+  "Reporter": "تأجيل",
+
+  "Veuillez vous connecter à votre espace citoyen": "الرجاء تسجيل الدخول إلى فضاء المواطن الخاص بك",
+  "Se connecter": "تسجيل الدخول"
 }

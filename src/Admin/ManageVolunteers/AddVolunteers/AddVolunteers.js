@@ -20,7 +20,6 @@ function AddVolunteers() {
   }; 
   const handleSubmit = async (values) => {
 
-    console.log('values', values)
     const user = {
       ...values,
       user_type:values.user_type,
@@ -43,7 +42,7 @@ function AddVolunteers() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, [dispatch]);
+  }, []);
   return (
     <Modal
       title="Add new volunteers"

@@ -4,7 +4,6 @@ let baseUrl = "http://localhost:5000/api/vaccines/";
 
 export const addVaccine = async (vaccine) => {
   const result = await Axios.post(baseUrl, vaccine);
-  console.log(result);
   return result.data.newVaccine;
 };
 

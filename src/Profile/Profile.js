@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, connect } from "react-redux";
+import { useDispatch, connect, useSelector } from "react-redux";
 import * as actions from "../redux/actions/users";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Image, Layout, Row, Col, Button } from "antd";
@@ -7,13 +7,16 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
-import logo from "../img/logoTun.webp";
-const mapStateToProps = (state) => ({
-  connectedUser: state.auth.loggedUser,
-  selectedUser: state.users.selectedUser,
-});
+import logo from "../img/logoTun.png";
+
+// const mapStateToProps = (state) => ({
+//   connectedUser: state.auth.loggedUser,
+//   selectedUser: state.users.selectedUser,
+// });
 
 function Profile(props) {
+  const connectedUser = useSelector((state) => state.auth.loggedUser);
+  const selectedUser = useSelector((state) => state.users.selectedUser);
   const showDate = (date) => {
     var convertedDate = new Date(date);
     return (
@@ -36,10 +39,10 @@ function Profile(props) {
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(props.connectedUser);
-    dispatch(actions.getUserByCin(props.connectedUser?.cin));
-    console.log(props.selectedUser);
-  }, [props.connectedUser]);
+    // console.log(connectedUser);
+    dispatch(actions.getUserByCin(connectedUser?.cin));
+    // console.log(selectedUser);
+  }, [connectedUser]);
   return (
     <div>
       <Navbar />
@@ -65,28 +68,39 @@ function Profile(props) {
             <Image src={logo} className="logo" />
             <h2>PASS Sanitaire</h2>
 
-            <p>Nom : {props.selectedUser.lastname}</p>
-            <p>Prénom : {props.selectedUser.firstname}</p>
-            <p>Cin : {props.selectedUser.cin}</p>
-            <p>Age : {props.selectedUser.birthday}</p>
-            {props.selectedUser.vaccines != null &&
-            props.selectedUser.vaccines.length > 0 ? (
+            <p>Nom : {selectedUser.lastname}</p>
+            <p>Prénom : {selectedUser.firstname}</p>
+            <p>Cin : {selectedUser.cin}</p>
+            <p>Age : {selectedUser.birthday}</p>
+            {selectedUser.vaccines != null &&
+            selectedUser.vaccines.length > 0 ? (
               <div>
-                <p>
-                  Date de vaccination :
-                  {showDate(props.selectedUser.vaccines[0].date)}
+                <div>
+                  {selectedUser.vaccines.map((item) => {
+                    return (
+                      <div>
+                        {/* {item.map((vaccine) => {
+                          return <p>{vaccine.vaccine_type}</p>;
+                        })} */}
+
+                        <p> Date de vaccination :{item.date}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* <p>
+                  Date de vaccination :{showDate(selectedUser.vaccines[0].date)}
                 </p>
                 <p>
-                  Vaccin :
-                  {props.selectedUser.vaccines[0].vaccine[0].vaccine_type}
-                </p>
+                  Vaccin :{selectedUser.vaccines[0].vaccine[0].vaccine_type}
+                </p> */}
               </div>
             ) : (
               <p>Pas encore vacciné</p>
             )}
           </div>
-          {props.selectedUser.vaccines != null &&
-          props.selectedUser.vaccines.length > 0 ? (
+          {selectedUser.vaccines != null && selectedUser.vaccines.length > 0 ? (
             <Button
               className="but"
               type="primary"
@@ -103,4 +117,4 @@ function Profile(props) {
   );
 }
 
-export default connect(mapStateToProps)(Profile);
+export default Profile;

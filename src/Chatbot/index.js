@@ -1,4 +1,4 @@
-//import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import "./styles.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";

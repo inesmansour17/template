@@ -13,6 +13,7 @@ function UpdateVolunteers() {
     
     const isModalVisible = useSelector((state) => state.users.displayUpdate);
   const [cities, setCities] = useState([]);    
+  const [selectedCenter, setSelectedCenter] = useState([]);  
   const centers =  useSelector((state) => state.centers.list);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.selectedUser);
@@ -38,7 +39,7 @@ function UpdateVolunteers() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, [dispatch]);
+  }, []);
   
    const options = centers.map(opt => (
     <Select.Option key={opt._id} value={opt.name} label={opt.name}>
@@ -51,8 +52,6 @@ function UpdateVolunteers() {
 ]);
     const handleSubmit = async (values) => {
 
-        console.log('values', values)
-        console.log('ahmed',moment().diff(moment('2021-12-15T15:35:45.259Z', 'YYYYMMDD'), 'years'))
 
         const Updateduser = {
             id: user._id,
@@ -77,13 +76,13 @@ function UpdateVolunteers() {
         layout="horizontal"
         onFinish={handleSubmit} 
         initialValues={{
-            "cin": user?.cin *1,
-            "firstname": user?.firstname,
-            "lastname": user?.lastname,
-            "email": user?.email,
-            "birthday": moment(user?.birthday),
-            "governorate": user?.governorate,
-            "city": user?.city,
+            ["cin"]: user?.cin *1,
+            ["firstname"]: user?.firstname,
+            ["lastname"]: user?.lastname,
+            ["email"]: user?.email,
+            ["birthday"]: moment(user?.birthday),
+            ["governorate"]: user?.governorate,
+            ["city"]: user?.city,
 
           }}
       ><Form.Item
@@ -194,6 +193,16 @@ function UpdateVolunteers() {
             },
           ]}
         >
+          {/* <Select >
+            <Select.Option>--Choose Center--</Select.Option>
+            {centers?.map((center, key) => {
+              return (
+                <Select.Option key={center._id} value={center.name}>
+                  {center.name}
+                </Select.Option>
+              );
+            })}
+          </Select> */}
             <AutoComplete
           dataSource={options}
           onSelect={(e) => onSelect(e)}

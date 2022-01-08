@@ -24,7 +24,7 @@ export const addUser = async (user) => {
 };
 
 export const updateUser = async (user) => {
-  const result = await Axios.put(userUrl + user.id, user);
+  const result = await Axios.put(userUrl + user.id, user)
   return result.data.updatedUser;
 };
 

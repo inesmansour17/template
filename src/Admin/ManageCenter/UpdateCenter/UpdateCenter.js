@@ -13,7 +13,6 @@ function UpdateCenter() {
   const dispatch = useDispatch();
 
   const closeModal = () => {
-    console.log(center)
     dispatch(actions.setDisplayUpdate(false));
   };
   
@@ -23,7 +22,6 @@ function UpdateCenter() {
   };
  
   const handleSubmit = async (values) => {
-    console.log(values)
     const Updatedcenter = {
       id:center.id,
       name:values.name,
@@ -49,10 +47,10 @@ function UpdateCenter() {
         layout="horizontal"
         onFinish={handleSubmit} 
         initialValues={{
-          "name": center.name,
-          "governorate": center.governorate,
-          "city": center.city,
-          "capacity": center.center_capacity,
+          ["name"]: center.name,
+          ["governorate"]: center.governorate,
+          ["city"]: center.city,
+          ["capacity"]: center.center_capacity,
         }}
       >
         <Form.Item

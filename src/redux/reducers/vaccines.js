@@ -59,7 +59,6 @@ const vaccines = (state = initialState, action) => {
       const newVaccines = state.list.filter(
         (vaccine) => vaccine.vaccine_type !== action.vaccine
       );
-      console.log(newVaccines);
       return { ...state, list: newVaccines };
     default:
       return state;

@@ -12,6 +12,7 @@ import {
   Legend,
 } from "recharts";
 import * as actions from "../redux/actions/centers";
+import { data } from "./data_test";
 const { Content } = Layout;
 
 function Admin() {
@@ -23,9 +24,11 @@ function Admin() {
     } catch (e) {
       console.log("errroooor");
     }
-  }, );
+  }, []);
+
   return (
-    centers.list && centers.list.length >0 &&
+    // centers.list &&
+    // centers.list.length > 0 && (
     <div>
       <Layout style={{ minHeight: "100vh" }}>
         <SideBar />
@@ -33,7 +36,7 @@ function Admin() {
           <Content style={{ margin: "0 16px" }}>
             <div
               className="site-layout-background"
-              style={{ padding: 24,marginRight:20, minHeight: 360 }}
+              style={{ padding: 24, marginRight: 20, minHeight: 360 }}
             >
               {/* <Progress type="circle" percent={75} />
               <Progress type="circle" percent={70} status="exception" />
@@ -79,7 +82,7 @@ function Admin() {
         </Layout>{" "}
       </Layout>
     </div>
-      
+    // )
   );
 }
 

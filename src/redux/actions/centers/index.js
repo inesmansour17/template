@@ -26,13 +26,11 @@ export const fetchCenters = () => async (dispatch) => {
   });
 
   try {
-    // const centers =
 
     dispatch({
       type: types.FETCH_CENTERS_SUCCESS,
       list: await api.fetchCenters(),
     });
-    // console.log(centers)
   } catch (e) {
     dispatch({
       type: types.FETCH_CENTERS_FAILURE,
@@ -58,10 +56,9 @@ export const fetchCenterByName = (id) => async (dispatch) => {
 export const addCenter = (center) => async (dispatch) => {
   try {
     const newCenter = await api.addCenter(center);
-    console.log(newCenter);
     dispatch({
       type: types.ADD_CENTER,
-      center: newCenter, //enjez ines w ghalet en plus center:newCenter,
+      center: newCenter, 
     });
   } catch (err) {
     dispatch({

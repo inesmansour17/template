@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import * as types from "../redux/types";
 import * as actions from "../redux/actions/users";
 import { Form, Input, Button, Select, InputNumber, notification } from "antd";
-
+import { useTranslation } from "react-i18next";
 import Navbar from "../Navbar/Navbar";
 
 import "../InscriptionInCenter/InscriptionInCenter.css";
 import gouvernorat from "../constants/gouvernorat";
 import villes from "../constants/villes";
 
-function InscriptionInCenter() {
+function InscriptionInCenter({ isUpdateInscri }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [cities, setCities] = useState([]);
   const changeGov = (gover) => {
@@ -27,16 +28,20 @@ function InscriptionInCenter() {
     }
   }, [error]);
   const handleSubmit = async (values) => {
-    const user = {
-      cin: values.cin,
-      firstname: values.firstname,
-      lastname: values.lastname,
-      email: values.email,
-      birthday: values.birthday,
-      governorate: values.governorate,
-      city: values.city,
-    };
-    dispatch(actions.registerCenter(user));
+    if (isUpdateInscri) {
+      dispatch(actions.updateUser(values));
+    } else {
+      const user = {
+        cin: values.cin,
+        firstname: values.firstname,
+        lastname: values.lastname,
+        email: values.email,
+        birthday: values.birthday,
+        governorate: values.governorate,
+        city: values.city,
+      };
+      dispatch(actions.registerCenter(user));
+    }
   };
   const clearError = () => {
     dispatch({
@@ -55,7 +60,7 @@ function InscriptionInCenter() {
   return (
     <div>
       <Navbar />
-      {err && popUp("error")}
+
       <Form
         name="control-ref"
         labelCol={{ span: 4 }}
@@ -64,21 +69,28 @@ function InscriptionInCenter() {
         className="inscriC"
         onFinish={handleSubmit}
       >
-        <p className="parag">Veuillez remplir ces champs en langue française</p>
+        <p className="parag">
+          {t("Veuillez remplir ces champs en langue française")}
+          {err && popUp("error")}
+        </p>
         <Form.Item
           name="cin"
-          label="CIN:"
+          // label="CIN:"
+          label={t("CIN")}
           rules={[
             {
               required: true,
+              type: "number",
             },
+            { min: 8, message: "CIN est composée de 8 chiffres." },
+            { max: 8, message: "CIN est composée de 8 chiffres." },
           ]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="firstname"
+          label={t("Nom")}
           name="firstname"
           rules={[
             {
@@ -90,7 +102,7 @@ function InscriptionInCenter() {
         </Form.Item>
 
         <Form.Item
-          label="Prénom:"
+          label={t("Prénom")}
           rules={[
             {
               required: true,
@@ -102,10 +114,12 @@ function InscriptionInCenter() {
         </Form.Item>
 
         <Form.Item
-          label="Email:"
+          label={t("Email")}
           rules={[
             {
               required: true,
+              type: "email",
+              message: "Email non valide",
             },
           ]}
           name="email"
@@ -114,7 +128,7 @@ function InscriptionInCenter() {
         </Form.Item>
 
         <Form.Item
-          label="Gouvernorat"
+          label={t("Gouvernorat")}
           name="governorate"
           rules={[
             {
@@ -134,7 +148,7 @@ function InscriptionInCenter() {
           </Select>
         </Form.Item>
         <Form.Item
-          label="Ville"
+          label={t("Ville")}
           name="city"
           rules={[
             {
@@ -155,7 +169,7 @@ function InscriptionInCenter() {
         </Form.Item>
 
         <Form.Item
-          label="Age"
+          label={t("Age")}
           name="birthday"
           rules={[
             {

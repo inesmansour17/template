@@ -22,13 +22,10 @@ export const fetchPharmacies = () => async (dispatch) => {
    })
    
       try {
-        // const pharmacys =  
-
          dispatch({
            type: types.FETCH_PHARMACIES_SUCCESS,
            list: await api.fetchPharmacies(),
          })
-        // console.log(pharmacys)
       } catch (e) {
        dispatch({
          type: types.FETCH_PHARMACIES_FAILURE,

@@ -49,5 +49,25 @@
   "1 à 2 grand (s) centre(s) par gouvernorat ouvert toute la semaine Et un centre par délégation à identifier par direction régionale de la santé ouvert le weekend": "1 à 2 grand (s) centre(s) par gouvernorat ouvert toute la semaine Et un centre par délégation à identifier par direction régionale de la santé ouvert le weekend",
   "Que faire en cas de problème lors de l'inscription?": "Que faire en cas de problème lors de l'inscription?",
   "Un numéro vert gratuit a été mis en place pour accompagner les citoyens tout au long de la campagne de vaccination.": "Un numéro vert gratuit a été mis en place pour accompagner les citoyens tout au long de la campagne de vaccination. ",
-  "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h": "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h"
+  "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h": "Le numéro vert : 80102021, ouvert du lundi au vendredi de 09h à 17h",
+
+  "CIN": "CIN",
+  "Nom": "Nom",
+  "Prénom": "Prénom",
+  "Email": "Email",
+  "Gouvernorat": "Gouvernorat",
+  "Ville": "Ville",
+  "Age": "Age",
+  "Veuillez remplir ces champs en langue française": "Veuillez remplir ces champs en langue française",
+
+  "Mettre à jour": "Mettre à jour",
+  "Mettez à jour votre inscription à EVAX": "Mettez à jour votre inscription à EVAX",
+
+  "Reportez votre rendez-vous": "Reportez votre rendez-vous",
+  "Num d'inscription": "Num d'inscription",
+  "Nouvelle date": "Nouvelle date",
+  "Reporter": "Reporter",
+
+  "Veuillez vous connecter à votre espace citoyen": "Veuillez vous connecter à votre espace citoyen",
+  "Se connecter": "Se connecter"
 }

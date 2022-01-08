@@ -25,7 +25,6 @@ export const registerpharmacy = async (user) => {
 export const login = async (user) => {
   try {
     const result = await Axios.post(baseUrl + "/login", user);
-    console.log(result.data);
     localStorage.setItem("token", JSON.stringify(result.data.token));
     // localStorage.setItem("token", result.data.token);
     return result.data;

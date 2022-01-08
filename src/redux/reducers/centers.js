@@ -63,7 +63,6 @@ const centers = (state = initialState, action) => {
       const newCenters = state.list.filter(
         (center) => center.name !== action.center
       );
-      console.log(newCenters);
       return { ...state, list: newCenters };
 
     case types.ADD_VACCINE_TO_CENTER:
@@ -73,7 +72,6 @@ const centers = (state = initialState, action) => {
         }
         return center;
       });
-      console.log(updatedCenterVaccine);
       return { ...state, list: updatedCenterVaccine };
     default:
       return state;

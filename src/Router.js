@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route,Redirect  } from "react-router-dom";
+import { Router, Switch, Route, Navigate, Redirect } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import Home from "./Home/Home";
@@ -9,8 +9,8 @@ import ManageOpenDay from "./Admin/ManageOpenDay/ManageOpenDay";
 import ManagePharmacy from "./Admin/ManagePharmacy/ManagePharmacy";
 import inscriptionPharmacie from "./inscriptionPharmacie/inscriptionPharmacie";
 import UpdateInscri from "./updateInscri/updateInscri";
-import reportRdv from "./reportRdv/reportRdv";
-//import Login from "./login";
+import ReportRdv from "./reportRdv/reportRdv";
+import Login from "./login";
 import ManageVaccine from "./Admin/ManageVaccine/ManageVaccine";
 import ManageVolunteers from "./Admin/ManageVolunteers/ManageVolunteers";
 import InscriptionInCenter from "./InscriptionInCenter/InscriptionInCenter";
@@ -44,7 +44,7 @@ class AppRouter extends React.Component {
           <Route path="/updateInscription" component={UpdateInscri}></Route>
           <Route path="/citoyenSpace" component={CitoyenSpace}></Route>
 
-          <Route path="/reportRdv" component={reportRdv}></Route>
+          <Route path="/reportRdv" component={ReportRdv}></Route>
 
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Chatbot" component={Chatbot}></Route>

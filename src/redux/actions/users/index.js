@@ -19,7 +19,6 @@ export const registerCenter = (user) => async (dispatch) => {
 export const addUser = (user) => async (dispatch) => {
   try {
     const newUser = await api.addUser(user);
-    console.log(newUser); //a testé demain
     dispatch({
       type: types.ADD_USER,
       user: newUser,

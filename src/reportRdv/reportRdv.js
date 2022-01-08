@@ -4,12 +4,13 @@ import { Form, Input, Button, DatePicker } from "antd";
 import "./reportRdv.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../redux/actions/RDV/RDV.js";
+import { useTranslation } from "react-i18next";
 
 const ReportRdv = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const reportRdv = (values) => {
-    console.log("values", values);
 
     const { updateRDV } = actions;
 
@@ -28,10 +29,10 @@ const ReportRdv = () => {
         layout="horizontal"
         className="report"
       >
-        <p className="pa">Reportez votre rendez-vous</p>
+        <p className="pa">{t("Reportez votre rendez-vous")}</p>
         <Form.Item
           name="CIN"
-          label="CIN:"
+          label={t("CIN")}
           rules={[
             {
               required: true,
@@ -43,7 +44,7 @@ const ReportRdv = () => {
 
         <Form.Item
           name="Num Inscription:"
-          label="Num Inscription:"
+          label={t("Num d'inscription")}
           rules={[
             {
               required: true,
@@ -55,7 +56,7 @@ const ReportRdv = () => {
 
         <Form.Item
           name="appointmentDate"
-          label="Nouvelle date:"
+          label={t("Nouvelle date")}
           rules={[
             {
               required: true,
@@ -65,7 +66,7 @@ const ReportRdv = () => {
           <DatePicker />
         </Form.Item>
         <Button type="primary" htmlType="submit" shape="round" className="bt">
-          Reporter
+          {t("Reporter")}
         </Button>
       </Form>
     </div>
